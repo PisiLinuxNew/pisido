@@ -16,7 +16,7 @@
             <Dependency>qt-devel</Dependency>
             <Dependency>qtermwidget-devel</Dependency>
         </BuildDependencies>
-        <Archive sha1sum="99a04949294ea231e3d6b36c292b1b39f14f050f" type="targz">https://github.com/hrngultekin/PisiDo/raw/master/pisido.tar.gz</Archive>
+        <Archive sha1sum="192e44a0ab769d4ca84cdfa5f3f9149595641ec2" type="targz">https://github.com/hrngultekin/PisiDo/raw/master/pisido-2.0.1.tar.gz</Archive>
     </Source>
     <Package>
         <Name>pisido</Name>

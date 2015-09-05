@@ -1,0 +1,22 @@
+[Desktop Entry]
+Categories=Development;IDE;
+Comment[tr]=Pisi paketi yapıcı
+Comment=Pisi paketi yapıcı
+Encoding=UTF-8
+Exec=pisido
+GenericName[tr]=Pisi paketi yapıcı
+GenericName=Pisi paketi yapıcı
+Icon=pisido.png
+MimeType=
+Name[tr]=PiSiDo
+Name=PiSiDo
+Path=
+StartupNotify=false
+Terminal=false
+TerminalOptions=
+Type=Application
+Version=2.0
+X-DBUS-ServiceName=
+X-DBUS-StartupType=
+X-KDE-SubstituteUID=false
+X-KDE-Username=

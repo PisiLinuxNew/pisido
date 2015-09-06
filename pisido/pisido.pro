@@ -19,7 +19,7 @@ TARGET = pisido
 TEMPLATE = app
 LANGUAGE = C++
 
-VERSION = 2.3.0
+VERSION = 2.3.1
 DEFINES += PISIDO_VERSION=\\\"$$VERSION\\\"
 LIBS += -lqscintilla2
 INCLUDEPATH += ./h

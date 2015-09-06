@@ -2076,6 +2076,7 @@ void MainWindow::container_triggered(QAction *action){
     ui->action_Update_Docker->setEnabled(false);
     ui->tb_docker_container->setEnabled(false);
     ui->action_Exit_Container->setEnabled(true);
+    ui->action_Refresh_Container->setEnabled(true);
 
     QString command = QString("docker attach %1 \n").arg(action->text());
     w_terminal->sendText(command);
@@ -2093,6 +2094,7 @@ void MainWindow::on_action_Exit_Container_triggered(){
     ui->action_Update_Docker->setEnabled(true);
     ui->action_Clear_Docker->setEnabled(false);
     ui->action_Exit_Container->setEnabled(false);
+    ui->action_Refresh_Container->setEnabled(false);
 
     ui->tb_docker_container->setEnabled(true);
     foreach (QAction *a, ui->tb_docker_container->actions()) {
@@ -2129,4 +2131,9 @@ void MainWindow::on_action_Start_Daemon_triggered(){
         QMessageBox::warning(0,"Warning","Daemon is not start!\n");
         return;
     }
+}
+
+void MainWindow::on_action_Refresh_Container_triggered(){
+    QString command=QString("pisi hs -t 80\n");
+    w_terminal->sendText(command);
 }

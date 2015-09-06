@@ -162,6 +162,7 @@ private slots:
     void on_action_Exit_Container_triggered();
     void on_action_Root_triggered();
     void on_action_Start_Daemon_triggered();
+    void on_action_Refresh_Container_triggered();
 
 
 protected:

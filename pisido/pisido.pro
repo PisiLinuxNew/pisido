@@ -9,7 +9,7 @@ CONFIG   += exceptions warn_on precompile_header qscintilla2
 
 greaterThan(QT_MAJOR_VERSION, 4){
     QT += widgets
-    DEFINES += USING_QT5=5
+    DEFINES += USING_QT5=\\\"true\\\"
     LIBS += -lqtermwidget5
 }else{
     LIBS += -lqtermwidget4
@@ -99,7 +99,8 @@ SOURCES += \
     cpp/archivewidget.cpp \
     cpp/aboutdialog.cpp \
     cpp/directorymodel.cpp \
-    cpp/translationwidget.cpp
+    cpp/translationwidget.cpp \
+    cpp/removecontainersdialog.cpp
 
 HEADERS += \
     h/pchs.h \
@@ -121,7 +122,8 @@ HEADERS += \
     h/aboutdialog.h \
     h/multicompleter.h \
     h/directorymodel.h \
-    h/translationwidget.h
+    h/translationwidget.h \
+    h/removecontainersdialog.h
 
 FORMS += \
     ui/mainwindow.ui \
@@ -134,7 +136,8 @@ FORMS += \
     ui/archiveselectiondialog.ui \
     ui/archivewidget.ui \
     ui/aboutdialog.ui \
-    ui/translationwidget.ui
+    ui/translationwidget.ui \
+    ui/removecontainersdialog.ui
 
 TRANSLATIONS += \
     translations/pisido_en_US.ts \

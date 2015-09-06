@@ -207,6 +207,9 @@ MainWindow::MainWindow(QWidget *parent) :
         WorkspaceDialog wd(this);
         if(wd.exec() == QDialog::Accepted){
             workspace_dir = QDir(wd.get_workspace());
+            output_dir = QDir(wd.get_output_dir());
+            archives_dir = QDir(wd.get_archives_dir());
+            packages_dir = QDir(wd.get_packages_dir());
             not_ask_workspace = wd.get_not_ask_workspace();
         }
         else{
@@ -250,13 +253,12 @@ MainWindow::MainWindow(QWidget *parent) :
 
     first_run=true;
 
-    connect(ui->btn_add_package,SIGNAL(clicked()),this,SLOT(on_btn_package_clicked()));
-    connect(ui->btn_remove_package,SIGNAL(clicked()),this,SLOT(on_btn_remove_clicked()));
+
 
     connect(ui->tb_zoom_in,SIGNAL(clicked()),this,SLOT(save_act_editor_conf()));
     connect(ui->tb_zoom_out,SIGNAL(clicked()),this,SLOT(save_act_editor_conf()));
 
-    connect(ui->actionOpen_Log,SIGNAL(triggered()),SLOT(on_action_Open_Log_triggered()));
+    //connect(ui->actionOpen_Log,SIGNAL(triggered()),SLOT(on_actionOpen_Log_triggered()));
 
     connect(ui->tb_docker_container,SIGNAL(triggered(QAction*)),this,SLOT(container_triggered(QAction*)));
 
@@ -507,6 +509,9 @@ void MainWindow::write_settings()
     settings.setValue("window_state", saveState());
     settings.setValue("window_geometry", saveGeometry());
     settings.setValue("workspace", workspace_dir.absolutePath());
+    settings.setValue("output_dir", output_dir.absolutePath());
+    settings.setValue("archives_dir", archives_dir.absolutePath());
+    settings.setValue("packages_dir", packages_dir.absolutePath());
     settings.setValue("not_ask_workspace", not_ask_workspace);
     settings.endGroup();
 }
@@ -517,6 +522,9 @@ void MainWindow::read_settings()
     restoreState(settings.value("window_state").toByteArray());
     restoreGeometry(settings.value("window_geometry").toByteArray());
     workspace_dir = settings.value("workspace").toString();
+    output_dir = settings.value("output_dir").toString();
+    archives_dir = settings.value("archives_dir").toString();
+    packages_dir = settings.value("packages_dir").toString();
     not_ask_workspace = settings.value("not_ask_workspace", false).toBool();
     settings.endGroup();
 }
@@ -1468,7 +1476,7 @@ void MainWindow::pisi_to_gui() throw (QString)
 //            break;
         package = pisi.get_package(i);
 
-        on_btn_package_clicked(package.get_name());
+        on_btn_add_package_clicked(package.get_name());
         ++i;
     }while(i<=count);
 
@@ -1789,7 +1797,7 @@ void MainWindow::call_pisi_build_command(const QString &build_step)
         command = QString("pisi build '%1' %2 --output-dir %3 \n")
             .arg(pspec_file)
             .arg(build_step)
-            .arg(workspace_dir.absolutePath())
+            .arg(output_dir.absolutePath())
             ;
         if (!is_root)
             command="pkexec -u root "+command;
@@ -1805,7 +1813,7 @@ void MainWindow::call_pisi_build_command(const QString &build_step)
 }
 
 
-void MainWindow::on_btn_package_clicked(QString name)
+void MainWindow::on_btn_add_package_clicked(QString name)
 {
     lw_item=new QListWidgetItem(name);
     lw_item->setFlags(lw_item->flags() | Qt :: ItemIsEditable);
@@ -1821,7 +1829,7 @@ void MainWindow::on_btn_package_clicked(QString name)
 }
 
 
-void MainWindow::on_btn_remove_clicked(){
+void MainWindow::on_btn_remove_package_clicked(){
     int i=ui->lw_packages->currentRow();
     pisi.remove_package(i+1);
     QString name=ui->lw_packages->currentItem()->text();
@@ -1913,7 +1921,7 @@ void MainWindow::get_act_editor_conf(){
     actions_editor->zoomTo(zoom);
 }
 
-void MainWindow::on_action_Open_Log_triggered(){
+void MainWindow::on_actionOpen_Log_triggered(){
     settings.beginGroup("configuration");
     if (ui->le_package_name->text().isEmpty() || pisi.is_empty()) {
         QMessageBox::warning(0,trUtf8("Warning"),trUtf8("Please enter package data."));
@@ -1977,21 +1985,30 @@ void MainWindow::on_action_Run_Docker_triggered(){
     ui->action_Clear_Docker->setEnabled(true);
     ui->tb_docker_container->setEnabled(true);
 
-    QString command = QString("docker pull ertugerata/pisi-chroot-farm && " +
+    QString command = QString(/*"docker pull ertugerata/pisi-chroot-farm && " +*/
                               QString("docker run -v %1:/git ").arg(workspace_dir.absolutePath()) +
-                              QString("-v %1/build:/root ").arg(workspace_dir.absolutePath()) +
-                              "-v /var/cache/pisi/archives:/var/cache/pisi/archives " +
-                              "-v /var/cache/pisi/packages:/var/cache/pisi/packages " +
+                              QString("-v %1:/root ").arg(output_dir.absolutePath()) +
+                              QString("-v %1:/var/cache/pisi/archives ").arg(archives_dir.absolutePath()) +
+                              QString("-v %1:/var/cache/pisi/packages ").arg(packages_dir.absolutePath()) +
                               "-itd ertugerata/pisi-chroot-farm bash \n");
 
     w_terminal->sendText(command);
 
-    find_docker_containers();
+
+    foreach (QAction *a, ui->tb_docker_container->actions()) {
+        if(a->text()=="Find Containers")
+            return;
+    }
+    QAction *action_Find_docker_containers=new QAction("Find Containers",0);
+    ui->tb_docker_container->addAction(action_Find_docker_containers);
+    ui->tb_docker_container->setDefaultAction(action_Find_docker_containers);
 }
 
 void MainWindow::on_action_Update_Docker_triggered(){
     ui->tb_docker_container->setEnabled(true);
     foreach (QAction *a, ui->tb_docker_container->actions()) {
+        if(a->text()=="Find Containers")
+            continue;
         ui->tb_docker_container->removeAction(a);
     }
     ui->tb_docker_container->setText(trUtf8("Containers"));
@@ -1999,7 +2016,7 @@ void MainWindow::on_action_Update_Docker_triggered(){
     QString command = QString("docker pull ertugerata/pisi-chroot-farm \n");
     w_terminal->sendText(command);
 
-    find_docker_containers();
+    //find_docker_containers();
 }
 
 void MainWindow::on_action_Clear_Docker_triggered(){
@@ -2015,7 +2032,7 @@ void MainWindow::on_tb_import_from_folder_clicked(){
     on_tb_import_package_clicked();
 }
 
-void MainWindow::find_docker_containers(){
+void MainWindow::on_action_Find_docker_containers_triggered(){
     QProcess *p=new QProcess(0);
 
     QStringList argmnt;
@@ -2037,6 +2054,13 @@ void MainWindow::find_docker_containers(){
     delete p;
 
     for (int i=1;i<lines.length()-1;i++){
+        bool iscontain=false;
+        foreach (QAction *a, ui->tb_docker_container->actions()) {
+            if(a->text()==lines[i].trimmed().split(" ").last())
+                iscontain=true;
+        }
+        if(iscontain)
+            continue;
         QAction *container=new QAction(lines[i].trimmed().split(" ").last(),0);
         ui->tb_docker_container->addAction(container);
     }
@@ -2044,6 +2068,11 @@ void MainWindow::find_docker_containers(){
 
 
 void MainWindow::container_triggered(QAction *action){
+    if(action->text()=="Find Containers"){
+        on_action_Find_docker_containers_triggered();
+        return;
+    }
+
     ui->action_Update_Docker->setEnabled(false);
     ui->tb_docker_container->setEnabled(false);
     ui->action_Exit_Container->setEnabled(true);

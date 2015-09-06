@@ -6,53 +6,73 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>447</width>
-    <height>180</height>
+    <width>480</width>
+    <height>236</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Select PiSiDo Workspace</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout">
-   <item>
-    <widget class="QLabel" name="label">
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="2" column="2">
+    <widget class="QPushButton" name="pb_browse_OD">
      <property name="text">
-      <string>Please select a workspace. All packages and their build files will be created in here.</string>
+      <string>&amp;Browse</string>
      </property>
-     <property name="wordWrap">
+    </widget>
+   </item>
+   <item row="2" column="1">
+    <widget class="QLineEdit" name="le_Output_Dir">
+     <property name="toolTip">
+      <string>Produced build files ad pisi packages will save under here</string>
+     </property>
+     <property name="readOnly">
       <bool>true</bool>
      </property>
     </widget>
    </item>
-   <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_2">
-     <item>
-      <widget class="QLabel" name="lbl_workspace">
-       <property name="text">
-        <string>Workspace</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLineEdit" name="le_workspace">
-       <property name="toolTip">
-        <string>Produced build files ad pisi packages will save under here</string>
-       </property>
-       <property name="readOnly">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="pb_browse">
-       <property name="text">
-        <string>&amp;Browse</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
+   <item row="4" column="0">
+    <widget class="QLabel" name="lbl_output_dir_2">
+     <property name="text">
+      <string>Archives Dir</string>
+     </property>
+    </widget>
    </item>
-   <item>
+   <item row="6" column="1">
+    <widget class="QLineEdit" name="le_Packages_Dir">
+     <property name="toolTip">
+      <string>Produced build files ad pisi packages will save under here</string>
+     </property>
+     <property name="readOnly">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="6" column="2">
+    <widget class="QPushButton" name="pb_browse_PD">
+     <property name="text">
+      <string>&amp;Browse</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="1">
+    <widget class="QLineEdit" name="le_workspace">
+     <property name="toolTip">
+      <string>Produced build files ad pisi packages will save under here</string>
+     </property>
+     <property name="readOnly">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0">
+    <widget class="QLabel" name="lbl_output_dir">
+     <property name="text">
+      <string>Output Dir</string>
+     </property>
+    </widget>
+   </item>
+   <item row="8" column="1">
     <spacer name="verticalSpacer">
      <property name="orientation">
       <enum>Qt::Vertical</enum>
@@ -65,7 +85,45 @@
      </property>
     </spacer>
    </item>
-   <item>
+   <item row="1" column="2">
+    <widget class="QPushButton" name="pb_browse">
+     <property name="text">
+      <string>&amp;Browse</string>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="2">
+    <widget class="QPushButton" name="pb_browse_AD">
+     <property name="text">
+      <string>&amp;Browse</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="QLabel" name="lbl_workspace">
+     <property name="text">
+      <string>Workspace</string>
+     </property>
+    </widget>
+   </item>
+   <item row="6" column="0">
+    <widget class="QLabel" name="lbl_output_dir_3">
+     <property name="text">
+      <string>Packages Dir</string>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="1">
+    <widget class="QLineEdit" name="le_Archives_Dir">
+     <property name="toolTip">
+      <string>Produced build files ad pisi packages will save under here</string>
+     </property>
+     <property name="readOnly">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="9" column="0" colspan="3">
     <widget class="QCheckBox" name="check_not_ask">
      <property name="toolTip">
       <string>You can change workspace form menu</string>
@@ -75,7 +133,7 @@
      </property>
     </widget>
    </item>
-   <item>
+   <item row="11" column="0" colspan="3">
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
       <spacer name="horizontalSpacer">
@@ -115,11 +173,19 @@
      </item>
     </layout>
    </item>
+   <item row="0" column="0" colspan="3">
+    <widget class="QLabel" name="label">
+     <property name="text">
+      <string>Please select a workspace. All packages and their build files will be created in here.</string>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
   </layout>
  </widget>
  <tabstops>
-  <tabstop>le_workspace</tabstop>
-  <tabstop>pb_browse</tabstop>
   <tabstop>check_not_ask</tabstop>
   <tabstop>pb_ok</tabstop>
   <tabstop>pb_exit</tabstop>

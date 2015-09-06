@@ -131,11 +131,11 @@ private slots:
 
     void on_tb_add_translation_clicked();
 
-    void on_btn_package_clicked(QString name="new package");
+    void on_btn_add_package_clicked(QString name="new package");
 
     void package_to_gui(int key=0) throw (QString);
 
-    void on_btn_remove_clicked();
+    void on_btn_remove_package_clicked();
 
     void time_elapsed();
 
@@ -143,7 +143,7 @@ private slots:
 
     void get_act_editor_conf();
 
-    void on_action_Open_Log_triggered();
+    void on_actionOpen_Log_triggered();
 
     void on_action_Run_Docker_triggered();
 
@@ -153,7 +153,7 @@ private slots:
 
     void on_tb_import_from_folder_clicked();
 
-    void find_docker_containers();
+    void on_action_Find_docker_containers_triggered();
 
     void container_triggered(QAction *action);
 
@@ -178,9 +178,12 @@ private:
     QDomDocument dom_pspec;
     Pisi pisi;
 
+
+
     bool not_ask_workspace;
 
     QDir workspace_dir;
+    QDir output_dir, archives_dir, packages_dir;
     QDir package_dir;
     QDir package_files_dir;
     QDir package_install_dir;

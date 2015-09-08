@@ -530,6 +530,7 @@ void MainWindow::on_action_Reset_Fields_triggered()
     ui->le_runtime_dependency->clear();
     ui->lw_packages->clear();
     ui->lw_packages->addItem("Package name");
+    ui->le_Icon->clear();
 
 //    These will be cleared after gui change :
 //      package_name, homepage, licenses, is_a_s, part_of, summary,
@@ -1423,6 +1424,7 @@ void MainWindow::pisi_to_gui() throw (QString)
     PisiSource source = pisi.get_source();
     package_name = source.get_name();
     homepage = source.get_home_page();
+    ui->le_Icon->setText(source.get_Icon());
     QString licenses = source.get_licenses().join(", ");
     QString is_a_s = source.get_is_a_s().join(", ");
     part_of = source.get_part_of();
@@ -1532,6 +1534,7 @@ void MainWindow::pisi_from_gui() throw (QString)
     source.set_name(package_name);
     source.set_home_page(homepage);
     source.set_packager(pisi.get_last_update().get_packager_name(), pisi.get_last_update().get_packager_email());
+    source.set_Icon(ui->le_Icon->text());
     QStringList licenses;
     foreach (QString license, this->licenses.split(",", QString::SkipEmptyParts)) {
         licenses << license.trimmed();

@@ -39,6 +39,10 @@ void PisiSource::load_from_dom(const QDomElement & dom_element) throw(QString)
     if(elm.isNull()) throw QObject::tr("No Packager::Email tag !");
     packager[packager_name] = elm.text();
 
+    elm = dom_element.firstChildElement("Icon");
+    if(!elm.isNull())
+        Icon=elm.text();
+
     elm = dom_element.firstChildElement("Archive");
     if(elm.isNull()) throw QObject::tr("No Archive tag !");
 
@@ -109,11 +113,21 @@ void PisiSource::save_to_dom(QDomElement & root) throw(QString)
         set_element_value(elm, "Email", packager[packager_names.first()]);
     }
 
+    if(!Icon.isEmpty()){
+        set_element_value(root,"Icon",Icon);
+    }else{
+        elm = root.firstChildElement("Icon");
+        if( ! elm.isNull())
+            root.removeChild(elm);
+    }
+
     elm = root.firstChildElement("Archive");
     while( ! elm.isNull()){
         root.removeChild(elm);
         elm = root.firstChildElement("Archive");
     }
+
+
 
     if(archives.count() < 1){
         throw QObject::tr("There is no archive !");
@@ -174,6 +188,10 @@ QMap<QString, QMap<PisiSource::PatchAttr,QString> > PisiSource::get_patches() co
     return patches;
 }
 
+QString PisiSource::get_Icon() const{
+    return Icon;
+}
+
 void PisiSource::set_home_page(QString home_page) throw(QString)
 {
     if(home_page.isEmpty())
@@ -206,6 +224,10 @@ void PisiSource::set_patches(QMap<QString, QMap<PatchAttr, QString> > patches)
 {
     // optional, no check
     this->patches = patches;
+}
+
+void PisiSource::set_Icon(QString Icon){
+    this->Icon=Icon;
 }
 
 PisiSource::ArchiveAttr PisiSource::get_archive_attribute(QString attr_name) throw(QString)

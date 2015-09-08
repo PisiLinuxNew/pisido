@@ -38,10 +38,14 @@ public:
     static QString get_archive_type(const QString & file_name);
     static QStringList get_archive_type_list();
 
+    QString get_Icon() const;
+
     void set_home_page(QString home_page) throw(QString);
     void set_packager(QString name, QString email) throw(QString);
     void set_archives(QMap<QString, QMap<ArchiveAttr,QString> > archives) throw(QString);
     void set_patches(QMap<QString, QMap<PatchAttr,QString> > patches);
+
+    void set_Icon(QString Icon);
 
     bool operator ==(const PisiSource & other);
     bool operator !=(const PisiSource & other);
@@ -57,7 +61,7 @@ private:
     QString get_patch_attribute(PatchAttr attr) throw(QString);
 
 private:
-    QString home_page;
+    QString home_page,Icon;
     QMap<QString,QString> packager;                         // name=ali veli, email=q@q.com
     QMap<QString, QMap<ArchiveAttr,QString> > archives;     // archive, {(sha1sum, xxx),(type, xxx),(target, xxx)}
     QMap<QString, QMap<PatchAttr,QString> > patches;      // patch, {(compty, xxx), (level, xxx), (target, xxx), (reverse, xxx)}

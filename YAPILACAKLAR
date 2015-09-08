@@ -2,8 +2,6 @@
 Yapılacaklar :
 ################
 
-    (*) kde5 api (sor)
-
     (*) pspecxml düzenleme eklenecek
 
     (*) Pakete simge eklemek için buton eklenecek ve okuması sağlanacak
@@ -45,7 +43,7 @@ Yapılanlar :
 
     Sürüm : 2.1.0
    ---------------
-    (X) derlemenin tamamlanma süresi konuldu
+    (X) derleme zamanı sayacı eklendi
 
     (X) yakınlaştırma kaydı eklendi
 

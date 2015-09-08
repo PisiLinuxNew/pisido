@@ -31,6 +31,7 @@
 #include <QDirIterator>
 #include <QThread>
 
+
 #include "aboutdialog.h"
 #include "addinstallfilelabeldialog.h"
 #include "addupdatedialog.h"
@@ -46,7 +47,7 @@
 
 #define DEFAULT_PATCH_LEVEL 1
 #define PACKAGE_NAME_REFRESH_INTERVAL 2000
-#define COMBO_ACTIONS_IMPORT_INDEX 8
+#define COMBO_ACTIONS_IMPORT_INDEX 9
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -60,7 +61,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 
     ui->menuDocker->menuAction()->setVisible(false);
-
 
     ui->tBar_docker->insertWidget(ui->action_Checkelf,ui->tb_docker_container);
     connect(ui->tb_docker_container,
@@ -163,10 +163,11 @@ MainWindow::MainWindow(QWidget *parent) :
     actions_templates_defaults[1] = get_file_contents(":/files/actions_template_cmake.py");
     actions_templates_defaults[2] = get_file_contents(":/files/actions_template_java.py");
     actions_templates_defaults[3] = get_file_contents(":/files/actions_template_kde4.py");
-    actions_templates_defaults[4] = get_file_contents(":/files/actions_template_python.py");
-    actions_templates_defaults[5] = get_file_contents(":/files/actions_template_qt4.py");
-    actions_templates_defaults[6] = get_file_contents(":/files/actions_template_qt5.py");
-    actions_templates_defaults[7] = get_file_contents(":/files/actions_template_scons.py");
+    actions_templates_defaults[4] = get_file_contents(":/files/actions_template_kde5.py");
+    actions_templates_defaults[5] = get_file_contents(":/files/actions_template_python.py");
+    actions_templates_defaults[6] = get_file_contents(":/files/actions_template_qt4.py");
+    actions_templates_defaults[7] = get_file_contents(":/files/actions_template_qt5.py");
+    actions_templates_defaults[8] = get_file_contents(":/files/actions_template_scons.py");
     actions_templates_defaults[COMBO_ACTIONS_IMPORT_INDEX] = "";
     actions_templates = actions_templates_defaults;
     actions_editor->setText(actions_templates[ui->combo_actions_template->currentIndex()]);
@@ -1638,12 +1639,13 @@ bool MainWindow::create_build_files()
         }
     }
 
-    QString brand_string = QString("By %1 %2").arg(qApp->applicationName()).arg(qApp->applicationVersion());
-    QString python_branding = QString("\n# %1\n").arg(brand_string);
-    QString xml_branding = QString("\n<!-- %1 -->\n").arg(brand_string);
+    /* bunlar silinecek */
+    //QString brand_string = QString("By %1 %2").arg(qApp->applicationName()).arg(qApp->applicationVersion());
+    //QString python_branding = QString("\n# %1\n").arg(brand_string);
+    //QString xml_branding = QString("\n<!-- %1 -->\n").arg(brand_string);
 
     QString pspec_file_name = package_dir.absoluteFilePath("pspec.xml");
-    QString pspec_content = dom_pspec.toString(4) + xml_branding;
+    QString pspec_content = dom_pspec.toString(4) /*+ xml_branding*/;
     save_text_file( pspec_file_name, pspec_content );
 
     // create translation
@@ -1700,7 +1702,7 @@ bool MainWindow::create_build_files()
             }
         }
 
-        QString content = dom.toString(4) + xml_branding;
+        QString content = dom.toString(4) /*+ xml_branding*/;
         QString file_name = package_dir.absoluteFilePath("translations.xml");
         save_text_file(file_name, content);
     }
@@ -1709,9 +1711,9 @@ bool MainWindow::create_build_files()
     // create actions
     QString actions_file_name = package_dir.absoluteFilePath("actions.py");
     QString action_py_contents = actions_editor->text();
-    if( ! action_py_contents.contains(python_branding)){
-        action_py_contents += python_branding;
-    }
+//    if( ! action_py_contents.contains(python_branding)){
+//        action_py_contents += python_branding;
+//    }
     if(action_py_contents.isEmpty())
         QMessageBox::information(this, tr("Actions API File"), tr("Actions.py is empty !"));
     action_py_contents.replace(QString("__package_name__"), package_name);
@@ -2027,6 +2029,9 @@ void MainWindow::action_Find_docker_containers_triggered(){
         ui->tb_docker_container->removeAction(a);
     }
 
+    Containers_name.clear();
+    Containers.clear();
+
     QProcess *p=new QProcess(0);
 
     QStringList argmnt;
@@ -2052,13 +2057,19 @@ void MainWindow::action_Find_docker_containers_triggered(){
 
     for (int i=1;i<lines.length()-1;i++){
         bool iscontain=false;
+        qDebug() << lines[i].contains("Exited");//trimmed().split(" ");//.last();
         foreach (QAction *a, ui->tb_docker_container->actions()) {
             if(a->text()==lines[i].trimmed().split(" ").last())
                 iscontain=true;
         }
         if(iscontain)
             continue;
-        Containers << lines[i].trimmed().split(" ").last();
+
+        Containers_name << lines[i].trimmed().split(" ").last();
+        if(lines[i].contains("Exited"))
+            Containers[Containers_name.last()]=true;
+        else
+            Containers[Containers_name.last()]=false;
         QAction *container=new QAction(lines[i].trimmed().split(" ").last(),0);
         ui->tb_docker_container->addAction(container);
     }
@@ -2067,7 +2078,7 @@ void MainWindow::action_Find_docker_containers_triggered(){
 
 void MainWindow::container_triggered(QAction *action){
     if(action->text()=="Find Containers"){
-        action_Find_docker_containers_triggered();
+//        action_Find_docker_containers_triggered();
         return;
     }
 
@@ -2075,6 +2086,11 @@ void MainWindow::container_triggered(QAction *action){
     ui->tb_docker_container->setEnabled(false);
     ui->action_Exit_Container->setEnabled(true);
     ui->action_Refresh_Container->setEnabled(true);
+
+    if(Containers[ui->tb_docker_container->text()]){
+        QString command = QString("docker start %1 \n").arg(action->text());
+        w_terminal->sendText(command);
+    }
 
     QString command = QString("docker attach %1 \n").arg(action->text());
     w_terminal->sendText(command);
@@ -2122,6 +2138,7 @@ void MainWindow::on_action_Start_Daemon_triggered(){
     }
     else if (pid > 0)
     {
+
     }
     else
     {
@@ -2138,8 +2155,10 @@ void MainWindow::on_action_Refresh_Container_triggered(){
 
 void MainWindow::on_actionRemove_Containers_triggered(){
     RemoveContainersDialog rmd(this);
-    rmd.set_containers(Containers);
+    rmd.set_containers(Containers_name);
     if(rmd.exec() == QDialog::Accepted){
+        Containers_name.clear();
+        Containers.clear();
         QString command=QString("docker rm -f %1 \n").arg(rmd.get_selected_containers().join(" "));
         w_terminal->sendText(command);
     }

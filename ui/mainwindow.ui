@@ -727,6 +727,11 @@ p, li { white-space: pre-wrap; }
          </item>
          <item>
           <property name="text">
+           <string>KDE5</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
            <string notr="true">Python</string>
           </property>
          </item>

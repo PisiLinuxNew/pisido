@@ -56,5 +56,6 @@
         <file alias="actions_template_scons.py">files/actions_template_scons.py</file>
         <file alias="actions_template_java.py">files/actions_template_java.py</file>
         <file alias="actions_template_qt5.py">files/actions_template_qt5.py</file>
+        <file alias="actions_template_kde5.py">files/actions_template_kde5.py</file>
     </qresource>
 </RCC>

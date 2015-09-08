@@ -181,7 +181,8 @@ private:
     QDomDocument dom_pspec;
     Pisi pisi;
 
-    QStringList Containers;
+    QStringList Containers_name;
+    QMap <QString,bool> Containers;
 
     QAction *action_Find_docker_containers;
 

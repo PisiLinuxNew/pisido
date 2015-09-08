@@ -529,12 +529,14 @@ p, li { white-space: pre-wrap; }
     <addaction name="action_Start_Daemon"/>
     <addaction name="separator"/>
     <addaction name="action_Run_Docker"/>
+    <addaction name="action_Checkelf"/>
     <addaction name="action_Update_Docker"/>
     <addaction name="separator"/>
     <addaction name="action_Clear_Docker"/>
-    <addaction name="action_Checkelf"/>
-    <addaction name="action_Exit_Container"/>
     <addaction name="action_Refresh_Container"/>
+    <addaction name="actionRemove_Containers"/>
+    <addaction name="separator"/>
+    <addaction name="action_Exit_Container"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menu_View"/>
@@ -1580,12 +1582,13 @@ And than you can edit their properties in here</string>
    <addaction name="separator"/>
    <addaction name="action_Run_Docker"/>
    <addaction name="action_Checkelf"/>
-   <addaction name="separator"/>
-   <addaction name="action_Refresh_Container"/>
-   <addaction name="action_Clear_Docker"/>
-   <addaction name="action_Exit_Container"/>
-   <addaction name="separator"/>
    <addaction name="action_Update_Docker"/>
+   <addaction name="separator"/>
+   <addaction name="action_Clear_Docker"/>
+   <addaction name="action_Refresh_Container"/>
+   <addaction name="actionRemove_Containers"/>
+   <addaction name="separator"/>
+   <addaction name="action_Exit_Container"/>
   </widget>
   <action name="actionExit">
    <property name="icon">
@@ -1845,6 +1848,14 @@ And than you can edit their properties in here</string>
    </property>
    <property name="text">
     <string>Refresh Container</string>
+   </property>
+  </action>
+  <action name="actionRemove_Containers">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Remove Containers</string>
    </property>
   </action>
  </widget>

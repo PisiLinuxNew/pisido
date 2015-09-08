@@ -15,8 +15,14 @@ public:
     explicit RemoveContainersDialog(QWidget *parent = 0);
     ~RemoveContainersDialog();
 
+    void set_containers(QStringList Containers);
+    QStringList get_selected_containers();
+
 private:
     Ui::RemoveContainersDialog *ui;
+
+private slots:
+    void on_pb_Select_All_clicked();
 };
 
 #endif // REMOVECONTAINERSDIALOG_H

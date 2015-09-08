@@ -14,6 +14,7 @@
 #include <QSettings>
 #include <QDomDocument>
 #include <QDir>
+#include <QAction>
 
 #include "pisi.h"
 #include "archivewidget.h"
@@ -131,7 +132,7 @@ private slots:
 
     void on_tb_add_translation_clicked();
 
-    void on_btn_add_package_clicked(QString name="new package");
+    void btn_add_package_clicked(QString name="new package");
 
     void package_to_gui(int key=0) throw (QString);
 
@@ -153,7 +154,7 @@ private slots:
 
     void on_tb_import_from_folder_clicked();
 
-    void on_action_Find_docker_containers_triggered();
+    void action_Find_docker_containers_triggered();
 
     void container_triggered(QAction *action);
 
@@ -163,6 +164,7 @@ private slots:
     void on_action_Root_triggered();
     void on_action_Start_Daemon_triggered();
     void on_action_Refresh_Container_triggered();
+    void on_actionRemove_Containers_triggered();
 
 
 protected:
@@ -179,7 +181,9 @@ private:
     QDomDocument dom_pspec;
     Pisi pisi;
 
+    QStringList Containers;
 
+    QAction *action_Find_docker_containers;
 
     bool not_ask_workspace;
 

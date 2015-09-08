@@ -1,7 +1,7 @@
 
 PiSiDo
 ------
-PiSiDo Pardus işletim sisteminin paket yönetim aracı olan PISI paketlerinin
+PiSiDo PisiLinux işletim sisteminin paket yönetim aracı olan PISI paketlerinin
 yapımı için geliştirilmiştir. PiSiDo'nun amacı paketleme yeni başlayan kullanıcıları
 ya da paketi olmayan programların kişisel kullanım için basitçe paketlenmesi amaçlanmıştır.
 PiSiDo, PISI paketleme yapısının tüm yeteneklerini kullanmaz. Daha çok inşa için gerekli olan
@@ -45,7 +45,7 @@ Kurulum
 Kurulum için sistemde Qt geliştirme araçlarının ve QTermWidget ile QScintilla2
 kitaplıklarının geliştirme dosyalarının yüklü olması gerekmektedir.
 
-Gerekli araçları Pardus'a basitçe şu şekilde kurulabilir:
+Gerekli araçları PisiLinux'a basitçe şu şekilde kurulabilir:
 
     sudo pisi it -c system.devel
     sudo pisi it qt-creator

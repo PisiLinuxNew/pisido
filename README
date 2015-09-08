@@ -1,7 +1,7 @@
 
 PiSiDo
 ------
-PiSiDo is developed to create pisi packages which is the package manager of the Pardus.
+PiSiDo is developed to create pisi packages which is the package manager of the PisiLinux.
 Aim of the PiSiDo is to be a start point which are new to PISI package system.
 And also to be a simple program to make packages from source code for end users.
 PiSiDo does not use PISI features at full capacity. It collects necessery information
@@ -45,7 +45,7 @@ Install
 To install, Qt development toolsand packages, QTermWidget and QScintilla2 development
 files must install ot the system.
 
-Required pakages can install on to Pardus like this :
+Required pakages can install on to PisiLinux like this :
 
     sudo pisi it -c system.devel
     sudo pisi it qt-creator

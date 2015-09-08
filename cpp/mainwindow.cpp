@@ -29,7 +29,6 @@
 #include <QCryptographicHash>
 #include <QTimer>
 #include <QDirIterator>
-
 #include <QThread>
 
 #include "aboutdialog.h"
@@ -43,6 +42,7 @@
 #include "workspacedialog.h"
 #include "multicompleter.h"
 #include "dockersettingsdialog.h"
+#include "removecontainersdialog.h"
 
 #define DEFAULT_PATCH_LEVEL 1
 #define PACKAGE_NAME_REFRESH_INTERVAL 2000
@@ -68,19 +68,6 @@ MainWindow::MainWindow(QWidget *parent) :
             ui->tb_docker_container,
             SLOT(setDefaultAction(QAction*))
             );
-
-//    QAction *container1=new QAction("btn1",0);
-//    QAction *container2=new QAction("btn2",0);
-//    ui->tb_docker_container->addAction(container1);
-//    ui->tb_docker_container->addAction(container2);
-
-//    ui->tb_docker_container->setDefaultAction(container1);
-//    connect(container1,SIGNAL(triggered()),SLOT(on_action_About_triggered()));
-//    connect(container2,SIGNAL(triggered()),SLOT(on_action_About_Qt_triggered()));
-
-
-
-    //ui->tBar_docker->toggleViewAction()->toggle();
 
     addDockWidget(Qt::RightDockWidgetArea, ui->dw_history);
     // tabify for first run
@@ -253,7 +240,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     first_run=true;
 
-
+    connect(ui->btn_add_package,SIGNAL(clicked()),this,SLOT(btn_add_package_clicked()));
 
     connect(ui->tb_zoom_in,SIGNAL(clicked()),this,SLOT(save_act_editor_conf()));
     connect(ui->tb_zoom_out,SIGNAL(clicked()),this,SLOT(save_act_editor_conf()));
@@ -1476,7 +1463,7 @@ void MainWindow::pisi_to_gui() throw (QString)
 //            break;
         package = pisi.get_package(i);
 
-        on_btn_add_package_clicked(package.get_name());
+        btn_add_package_clicked(package.get_name());
         ++i;
     }while(i<=count);
 
@@ -1813,7 +1800,7 @@ void MainWindow::call_pisi_build_command(const QString &build_step)
 }
 
 
-void MainWindow::on_btn_add_package_clicked(QString name)
+void MainWindow::btn_add_package_clicked(QString name)
 {
     lw_item=new QListWidgetItem(name);
     lw_item->setFlags(lw_item->flags() | Qt :: ItemIsEditable);
@@ -1999,9 +1986,10 @@ void MainWindow::on_action_Run_Docker_triggered(){
         if(a->text()=="Find Containers")
             return;
     }
-    QAction *action_Find_docker_containers=new QAction("Find Containers",0);
+    action_Find_docker_containers=new QAction("Find Containers",0);
     ui->tb_docker_container->addAction(action_Find_docker_containers);
     ui->tb_docker_container->setDefaultAction(action_Find_docker_containers);
+    connect(action_Find_docker_containers,SIGNAL(triggered()),this,SLOT(action_Find_docker_containers_triggered()));
 }
 
 void MainWindow::on_action_Update_Docker_triggered(){
@@ -2032,14 +2020,21 @@ void MainWindow::on_tb_import_from_folder_clicked(){
     on_tb_import_package_clicked();
 }
 
-void MainWindow::on_action_Find_docker_containers_triggered(){
+void MainWindow::action_Find_docker_containers_triggered(){
+    foreach (QAction *a, ui->tb_docker_container->actions()) {
+        if(a->text()=="Find Containers")
+            continue;
+        ui->tb_docker_container->removeAction(a);
+    }
+
     QProcess *p=new QProcess(0);
 
     QStringList argmnt;
     argmnt << "--user"
            << "root"
            << "docker"
-           << "ps";
+           << "ps"
+           << "-a";
     p->start("pkexec",argmnt);
     if(!p->isOpen())
         qDebug() << "process is not open";
@@ -2051,6 +2046,8 @@ void MainWindow::on_action_Find_docker_containers_triggered(){
     qDebug()<< lines;
     p->close();
 
+    ui->actionRemove_Containers->setEnabled(true);
+
     delete p;
 
     for (int i=1;i<lines.length()-1;i++){
@@ -2061,6 +2058,7 @@ void MainWindow::on_action_Find_docker_containers_triggered(){
         }
         if(iscontain)
             continue;
+        Containers << lines[i].trimmed().split(" ").last();
         QAction *container=new QAction(lines[i].trimmed().split(" ").last(),0);
         ui->tb_docker_container->addAction(container);
     }
@@ -2069,7 +2067,7 @@ void MainWindow::on_action_Find_docker_containers_triggered(){
 
 void MainWindow::container_triggered(QAction *action){
     if(action->text()=="Find Containers"){
-        on_action_Find_docker_containers_triggered();
+        action_Find_docker_containers_triggered();
         return;
     }
 
@@ -2136,4 +2134,13 @@ void MainWindow::on_action_Start_Daemon_triggered(){
 void MainWindow::on_action_Refresh_Container_triggered(){
     QString command=QString("pisi hs -t 80\n");
     w_terminal->sendText(command);
+}
+
+void MainWindow::on_actionRemove_Containers_triggered(){
+    RemoveContainersDialog rmd(this);
+    rmd.set_containers(Containers);
+    if(rmd.exec() == QDialog::Accepted){
+        QString command=QString("docker rm -f %1 \n").arg(rmd.get_selected_containers().join(" "));
+        w_terminal->sendText(command);
+    }
 }

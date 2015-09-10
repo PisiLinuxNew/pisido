@@ -158,6 +158,7 @@ OTHER_FILES += \
     resources/files/actions_template_cmake.py \
     resources/files/actions_template_java.py \
     resources/files/actions_template_kde4.py \
+    resources/files/actions_template_kde5.py \
     resources/files/actions_template_python.py \
     resources/files/actions_template_qt4.py \
     resources/files/actions_template_scons.py \

@@ -54,6 +54,9 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow),
     not_ask_workspace(false),
     workspace_dir(QDir::root()),
+    output_dir(QDir::root()),
+    archives_dir(QDir::root()),
+    packages_dir(QDir::root()),
     package_dir(QDir::root()),
     package_files_dir(QDir::root()),
     package_install_dir(QDir::root())
@@ -357,6 +360,9 @@ void MainWindow::on_action_Change_Workspace_triggered()
     WorkspaceDialog wd(this);
     if(wd.exec() == QDialog::Accepted){
         workspace_dir = QDir(wd.get_workspace());
+        output_dir = QDir(wd.get_output_dir());
+        archives_dir = QDir(wd.get_archives_dir());
+        packages_dir = QDir(wd.get_packages_dir());
         not_ask_workspace = wd.get_not_ask_workspace();
         w_terminal->setWorkingDirectory(workspace_dir.absolutePath());
         w_terminal->changeDir(workspace_dir.absolutePath());

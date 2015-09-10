@@ -85,11 +85,11 @@ void WorkspaceDialog::save_settings()
         return;
     QSettings settings;
     settings.beginGroup("main");
-    settings.setValue("not_ask_workspace", not_ask_workspace);
     settings.setValue("workspace", workspace);
     settings.setValue("output_dir", output_dir);
     settings.setValue("archives_dir", archives_dir);
     settings.setValue("packages_dir", packages_dir);
+    settings.setValue("not_ask_workspace", not_ask_workspace);
     settings.endGroup();
 }
 

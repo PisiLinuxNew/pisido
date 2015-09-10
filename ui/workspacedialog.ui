@@ -72,19 +72,6 @@
      </property>
     </widget>
    </item>
-   <item row="8" column="1">
-    <spacer name="verticalSpacer">
-     <property name="orientation">
-      <enum>Qt::Vertical</enum>
-     </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>20</width>
-       <height>33</height>
-      </size>
-     </property>
-    </spacer>
-   </item>
    <item row="1" column="2">
     <widget class="QPushButton" name="pb_browse">
      <property name="text">
@@ -183,6 +170,19 @@
      </property>
     </widget>
    </item>
+   <item row="8" column="0" colspan="3">
+    <spacer name="verticalSpacer">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>33</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
   </layout>
  </widget>
  <tabstops>
@@ -199,8 +199,8 @@
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>326</x>
-     <y>155</y>
+     <x>422</x>
+     <y>230</y>
     </hint>
     <hint type="destinationlabel">
      <x>242</x>
@@ -215,8 +215,8 @@
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>428</x>
-     <y>156</y>
+     <x>474</x>
+     <y>230</y>
     </hint>
     <hint type="destinationlabel">
      <x>407</x>

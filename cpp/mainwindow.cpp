@@ -240,6 +240,17 @@ MainWindow::MainWindow(QWidget *parent) :
     w_terminal->setWorkingDirectory(workspace_dir.absolutePath());
     w_terminal->changeDir(workspace_dir.absolutePath());
 
+    //docker_daemon_terminal
+    docker_daemon_terminal= new QTermWidget(1, ui->dockWidgetContents);
+    docker_daemon_terminal->setTerminalFont(terminal_font);
+    //w_terminal->setColorScheme(COLOR_SCHEME_WHITE_ON_BLACK);
+    docker_daemon_terminal->setScrollBarPosition(QTermWidget::ScrollBarRight);
+    docker_daemon_terminal->setWorkingDirectory(workspace_dir.absolutePath());
+    docker_daemon_terminal->changeDir(workspace_dir.absolutePath());
+
+    ui->horizontalLayout_12->addWidget(docker_daemon_terminal);
+    //docker_daemon_terminal
+
     ui->le_package_name->setFocus();
 
     first_run=true;
@@ -1795,10 +1806,7 @@ void MainWindow::call_pisi_build_command(const QString &build_step)
         command = QString("pisi build '%1' %2 --output-dir %3 \n")
             .arg(pspec_file)
             .arg(build_step)
-            .arg(output_dir.absolutePath())
-            ;
-        if (!is_root)
-            command="pkexec -u root "+command;
+            .arg(output_dir.absolutePath());
     }
     w_terminal->sendText(command);
 
@@ -1859,15 +1867,15 @@ void MainWindow::time_elapsed(){
                    .arg(elapsed_time%60, 2, 10, QChar('0')));
 
     if (start_process==false) {
-        QProcess *pkexec=new QProcess(0);
-        pkexec->start("pgrep",QStringList("pkexec"));
-        pkexec->waitForBytesWritten();
-        pkexec->waitForFinished();
+        QProcess *pgrep=new QProcess(0);
+        pgrep->start("pgrep",QStringList("pkexec"));
+        pgrep->waitForBytesWritten();
+        pgrep->waitForFinished();
 
-        QString pk_out=pkexec->readAll();
+        QString pk_out=pgrep->readAll();
         //qDebug()<< QString("pkexec output : %1").arg(pk_out);
 
-        delete pkexec;
+        delete pgrep;
 
         if(out !=""){
             start_process=true;
@@ -2044,12 +2052,9 @@ void MainWindow::action_Find_docker_containers_triggered(){
     QProcess *p=new QProcess(0);
 
     QStringList argmnt;
-    argmnt << "--user"
-           << "root"
-           << "docker"
-           << "ps"
+    argmnt << "ps"
            << "-a";
-    p->start("pkexec",argmnt);
+    p->start("docker",argmnt);
     if(!p->isOpen())
         qDebug() << "process is not open";
 
@@ -2121,40 +2126,26 @@ void MainWindow::on_action_Exit_Container_triggered(){
 
     ui->tb_docker_container->setEnabled(true);
     foreach (QAction *a, ui->tb_docker_container->actions()) {
+        if(a->text()=="Find Containers"){
+            ui->tb_docker_container->setDefaultAction(a);
+            continue;
+        }
         ui->tb_docker_container->removeAction(a);
     }
-    ui->tb_docker_container->setText(trUtf8("Containers"));
+    //ui->tb_docker_container->setText(trUtf8("Containers"));
+
 
     QString command = QString("exit\n");
     w_terminal->sendText(command);
+
+    action_Find_docker_containers_triggered();
 }
 
-void MainWindow::on_action_Root_triggered(){
-    ui->action_Root->setEnabled(false);
-    ui->action_Run_Docker->setEnabled(true);
-    is_root=true;
 
-    QString command=QString("pkexec -u root bash \n");
-    w_terminal->sendText(command);
-}
 
 void MainWindow::on_action_Start_Daemon_triggered(){
-    pid_t pid = fork();
-
-    if (pid == 0)
-    {
-        system("pkexec -u root docker -d -s overlay");
-    }
-    else if (pid > 0)
-    {
-
-    }
-    else
-    {
-        // fork failed
-        QMessageBox::warning(0,"Warning","Daemon is not start!\n");
-        return;
-    }
+    QString command="docker -d -s overlay\n";
+    docker_daemon_terminal->sendText(command);
 }
 
 void MainWindow::on_action_Refresh_Container_triggered(){

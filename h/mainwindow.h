@@ -161,7 +161,7 @@ private slots:
     void on_action_Checkelf_triggered();
 
     void on_action_Exit_Container_triggered();
-    void on_action_Root_triggered();
+
     void on_action_Start_Daemon_triggered();
     void on_action_Refresh_Container_triggered();
     void on_actionRemove_Containers_triggered();
@@ -178,6 +178,7 @@ private:
     QsciScintilla * actions_editor;
     QsciLexerPython * python_lexer;
     QTermWidget * w_terminal;
+    QTermWidget * docker_daemon_terminal;
     QDomDocument dom_pspec;
     Pisi pisi;
 
@@ -246,7 +247,7 @@ private:
     void pisi_from_gui() throw (QString);
     void save_package(int key);
 
-    bool Zoom,start_process,first_run,docker_is_running,is_root;
+    bool Zoom,start_process,first_run,docker_is_running;
 
 
 };

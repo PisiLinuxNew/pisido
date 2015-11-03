@@ -44,8 +44,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>296</width>
-         <height>810</height>
+         <width>301</width>
+         <height>838</height>
         </rect>
        </property>
        <layout class="QGridLayout" name="gridLayout">
@@ -488,7 +488,7 @@ p, li { white-space: pre-wrap; }
      <x>0</x>
      <y>0</y>
      <width>909</width>
-     <height>20</height>
+     <height>26</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -539,7 +539,6 @@ p, li { white-space: pre-wrap; }
     <property name="title">
      <string>Docker</string>
     </property>
-    <addaction name="action_Root"/>
     <addaction name="action_Start_Daemon"/>
     <addaction name="separator"/>
     <addaction name="action_Run_Docker"/>
@@ -1596,7 +1595,6 @@ And than you can edit their properties in here</string>
    <attribute name="toolBarBreak">
     <bool>true</bool>
    </attribute>
-   <addaction name="action_Root"/>
    <addaction name="action_Start_Daemon"/>
    <addaction name="separator"/>
    <addaction name="action_Run_Docker"/>
@@ -1608,6 +1606,17 @@ And than you can edit their properties in here</string>
    <addaction name="actionRemove_Containers"/>
    <addaction name="separator"/>
    <addaction name="action_Exit_Container"/>
+  </widget>
+  <widget class="QDockWidget" name="dw_dd_terminal">
+   <property name="windowTitle">
+    <string>Docker Daemon</string>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>8</number>
+   </attribute>
+   <widget class="QWidget" name="dockWidgetContents">
+    <layout class="QHBoxLayout" name="horizontalLayout_12"/>
+   </widget>
   </widget>
   <action name="actionExit">
    <property name="icon">
@@ -1797,7 +1806,7 @@ And than you can edit their properties in here</string>
   </action>
   <action name="action_Run_Docker">
    <property name="enabled">
-    <bool>false</bool>
+    <bool>true</bool>
    </property>
    <property name="icon">
     <iconset resource="../resources/pisido.qrc">
@@ -1845,15 +1854,6 @@ And than you can edit their properties in here</string>
    </property>
    <property name="text">
     <string>Exit Container</string>
-   </property>
-  </action>
-  <action name="action_Root">
-   <property name="icon">
-    <iconset resource="../resources/pisido.qrc">
-     <normaloff>:/images/root.png</normaloff>:/images/root.png</iconset>
-   </property>
-   <property name="text">
-    <string>Root</string>
    </property>
   </action>
   <action name="action_Start_Daemon">

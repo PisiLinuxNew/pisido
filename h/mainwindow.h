@@ -249,7 +249,7 @@ private:
 
     bool Zoom,start_process,first_run,docker_is_running;
 
-
+    int started_process_count;
 };
 
 #endif // MAINWINDOW_H

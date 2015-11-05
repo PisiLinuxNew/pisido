@@ -86,9 +86,11 @@ MainWindow::MainWindow(QWidget *parent) :
     QAction * a_dw_patches = ui->dw_patches->toggleViewAction();
     QAction * a_dw_history = ui->dw_history->toggleViewAction();
     QAction * a_dw_build = ui->dw_build->toggleViewAction();
+    QAction * a_dw_docker_d_terminal = ui->dw_dd_terminal->toggleViewAction();
     QAction * a_tBar_operations = ui->tBar_operations->toggleViewAction();
     QAction * a_tBar_view = ui->tBar_view->toggleViewAction();
     QAction * a_tBar_help = ui->tBar_help->toggleViewAction();
+
     a_dw_actions->setIcon(QIcon(":/images/actions.png"));
     a_dw_install_files->setIcon(QIcon(":/images/install-files.png"));
     a_dw_aditional_files->setIcon(QIcon(":/images/aditional-files.png"));
@@ -104,6 +106,7 @@ MainWindow::MainWindow(QWidget *parent) :
     a_dw_patches->setStatusTip(ui->dw_patches->toolTip());
     a_dw_history->setStatusTip(ui->dw_history->toolTip());
     a_dw_build->setStatusTip(ui->dw_build->toolTip());
+    a_dw_docker_d_terminal->setStatusTip(ui->dw_dd_terminal->toolTip());
     a_tBar_operations->setStatusTip(tr("Show or hide %1").arg(ui->tBar_operations->windowTitle()));
     a_tBar_view->setStatusTip(tr("Show or hide %1").arg(ui->tBar_view->windowTitle()));
     a_tBar_help->setStatusTip(tr("Show or hide %1").arg(ui->tBar_help->windowTitle()));
@@ -113,10 +116,12 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->menu_View->addAction(a_dw_patches);
     ui->menu_View->addAction(a_dw_history);
     ui->menu_View->addAction(a_dw_build);
+    ui->menu_View->addAction(a_dw_docker_d_terminal);
     ui->menu_View->addSeparator();
     ui->menu_View->addAction(a_tBar_operations);
     ui->menu_View->addAction(a_tBar_view);
     ui->menu_View->addAction(a_tBar_help);
+
     // fill view tool bar
     ui->tBar_view->addAction(a_dw_actions);
     ui->tBar_view->addAction(a_dw_install_files);
@@ -254,6 +259,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->le_package_name->setFocus();
 
     first_run=true;
+
+    a_dw_docker_d_terminal->triggered(false);
 
     connect(ui->btn_add_package,SIGNAL(clicked()),this,SLOT(btn_add_package_clicked()));
 
@@ -1795,6 +1802,21 @@ void MainWindow::call_pisi_build_command(const QString &build_step)
         model->clear();
     }
 
+    QProcess *p=new QProcess(0);
+    QStringList argmnt;
+    argmnt << "-u"
+           << "root"
+           << "pisi";
+    //qDebug()<<argmnt.last();
+    p->start("pgrep",argmnt);
+    if(!p->isOpen())
+        qDebug() << "process is not open";
+    p->waitForBytesWritten();
+    p->waitForFinished();
+    QString out=QString(p->readAll());
+    started_process_count=out.split("\n").count();
+    delete p;
+
     QString command;
     if(docker_is_running){
         command = QString("pisi build '%1' %2 -d --ignore-safety\n") //--output-dir %3
@@ -1866,30 +1888,7 @@ void MainWindow::time_elapsed(){
                    .arg((elapsed_time/60)%60, 2, 10, QChar('0'))
                    .arg(elapsed_time%60, 2, 10, QChar('0')));
 
-    if (start_process==false) {
-        QProcess *pgrep=new QProcess(0);
-        pgrep->start("pgrep",QStringList("pkexec"));
-        pgrep->waitForBytesWritten();
-        pgrep->waitForFinished();
-
-        QString pk_out=pgrep->readAll();
-        //qDebug()<< QString("pkexec output : %1").arg(pk_out);
-
-        delete pgrep;
-
-        if(out !=""){
-            start_process=true;
-        }
-        else if (out=="" && pk_out=="") {
-            timer->stop();
-            start_process=false;
-            disconnect(timer,SIGNAL(timeout()),this,SLOT(time_elapsed()));
-            timer->disconnect(timer,SIGNAL(timeout()),this,SLOT(time_elapsed()));
-            setWindowTitle("PisiDo");
-        }
-    }
-    else {
-        if (out=="") {
+        if (out.split("\n").count()==started_process_count) {
             timer->stop();
             start_process=false;
             QMessageBox::information(0,tr("Elapsed Time"),tr("   %1:%2:%3   ")
@@ -1899,7 +1898,6 @@ void MainWindow::time_elapsed(){
             disconnect(timer,SIGNAL(timeout()),this,SLOT(time_elapsed()));
             timer->disconnect(timer,SIGNAL(timeout()),this,SLOT(time_elapsed()));
         }
-    }
 
     p->terminate();
     delete p;
@@ -2062,7 +2060,7 @@ void MainWindow::action_Find_docker_containers_triggered(){
     p->waitForFinished();
     QString out=QString(p->readAll());
     QStringList lines=out.split("\n");
-    qDebug()<< lines;
+    //qDebug()<< lines;
     p->close();
 
     ui->actionRemove_Containers->setEnabled(true);
@@ -2071,7 +2069,7 @@ void MainWindow::action_Find_docker_containers_triggered(){
 
     for (int i=1;i<lines.length()-1;i++){
         bool iscontain=false;
-        qDebug() << lines[i].contains("Exited");//trimmed().split(" ");//.last();
+        //qDebug() << lines[i].contains("Exited");//trimmed().split(" ");//.last();
         foreach (QAction *a, ui->tb_docker_container->actions()) {
             if(a->text()==lines[i].trimmed().split(" ").last())
                 iscontain=true;
@@ -2162,4 +2160,5 @@ void MainWindow::on_actionRemove_Containers_triggered(){
         QString command=QString("docker rm -f %1 \n").arg(rmd.get_selected_containers().join(" "));
         w_terminal->sendText(command);
     }
+    action_Find_docker_containers_triggered();
 }

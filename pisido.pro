@@ -5,7 +5,7 @@
 #-------------------------------------------------
 
 QT       += core gui xml network
-CONFIG   += exceptions warn_on precompile_header qscintilla2
+CONFIG   += exceptions warn_on precompile_header qscintilla2    # pisi2.0 da çalışmazsa 'release' ekle
 
 greaterThan(QT_MAJOR_VERSION, 4){
     QT += widgets
@@ -19,9 +19,9 @@ TARGET = pisido
 TEMPLATE = app
 LANGUAGE = C++
 
-VERSION = 2.3.3
+VERSION = 2.3.4
 DEFINES += PISIDO_VERSION=\\\"$$VERSION\\\"
-LIBS += -lqscintilla2
+LIBS += -lqscintilla2                       # pisilinux2.0 da bu kodu kaldırmak gerekti qtcreatorda
 INCLUDEPATH += ./h
 
 

@@ -44,8 +44,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>301</width>
-         <height>838</height>
+         <width>296</width>
+         <height>810</height>
         </rect>
        </property>
        <layout class="QGridLayout" name="gridLayout">
@@ -488,7 +488,7 @@ p, li { white-space: pre-wrap; }
      <x>0</x>
      <y>0</y>
      <width>909</width>
-     <height>26</height>
+     <height>20</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -840,166 +840,177 @@ p, li { white-space: pre-wrap; }
     <number>8</number>
    </attribute>
    <widget class="QWidget" name="dw_build_contents">
-    <layout class="QHBoxLayout" name="horizontalLayout_9" stretch="0">
+    <layout class="QHBoxLayout" name="horizontalLayout_9">
      <item>
-      <widget class="QGroupBox" name="gb_custom_build_steps">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="title">
-        <string>Build Commands</string>
-       </property>
-       <layout class="QVBoxLayout" name="verticalLayout">
-        <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_8">
+      <layout class="QVBoxLayout" name="verticalLayout_5">
+       <item>
+        <widget class="QGroupBox" name="gb_custom_build_steps">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="title">
+          <string>Build Commands</string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout">
           <item>
-           <widget class="QLabel" name="lbl_build_only">
+           <layout class="QHBoxLayout" name="horizontalLayout_8">
+            <item>
+             <widget class="QLabel" name="lbl_build_only">
+              <property name="text">
+               <string>Only</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QComboBox" name="combo_build_only">
+              <item>
+               <property name="text">
+                <string>Build Files</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Package</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="tb_build_only">
+              <property name="toolTip">
+               <string>Build only selected</string>
+              </property>
+              <property name="statusTip">
+               <string>Build only selected</string>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+              <property name="icon">
+               <iconset resource="../resources/pisido.qrc">
+                <normaloff>:/images/build.png</normaloff>:/images/build.png</iconset>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_6">
+            <item>
+             <widget class="QLabel" name="lbl_build_up_to">
+              <property name="text">
+               <string>Up To</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QComboBox" name="combo_build_up_to">
+              <item>
+               <property name="text">
+                <string notr="true">Fetch</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string notr="true">Unpack</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string notr="true">Setup</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string notr="true">Build</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string notr="true">Install</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string notr="true">Check</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="tb_build_up_to">
+              <property name="toolTip">
+               <string>Build up to selected (see pisi help build)</string>
+              </property>
+              <property name="statusTip">
+               <string>Build up to selected (see pisi help build)</string>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+              <property name="icon">
+               <iconset resource="../resources/pisido.qrc">
+                <normaloff>:/images/build.png</normaloff>:/images/build.png</iconset>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout">
+            <item>
+             <widget class="QLabel" name="lbl_build_all">
+              <property name="text">
+               <string>Build All</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="tb_build_all">
+              <property name="toolTip">
+               <string>Create build files in to the package directory and builds package</string>
+              </property>
+              <property name="statusTip">
+               <string>Create build files in to the package directory and builds package</string>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+              <property name="icon">
+               <iconset resource="../resources/pisido.qrc">
+                <normaloff>:/images/build.png</normaloff>:/images/build.png</iconset>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pb_sha1sum">
             <property name="text">
-             <string>Only</string>
+             <string>find and paste sha1sum </string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QComboBox" name="combo_build_only">
-            <item>
-             <property name="text">
-              <string>Build Files</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Package</string>
-             </property>
-            </item>
-           </widget>
-          </item>
-          <item>
-           <widget class="QToolButton" name="tb_build_only">
-            <property name="toolTip">
-             <string>Build only selected</string>
+           <spacer name="verticalSpacer">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
             </property>
-            <property name="statusTip">
-             <string>Build only selected</string>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>40</height>
+             </size>
             </property>
-            <property name="text">
-             <string/>
-            </property>
-            <property name="icon">
-             <iconset resource="../resources/pisido.qrc">
-              <normaloff>:/images/build.png</normaloff>:/images/build.png</iconset>
-            </property>
-           </widget>
+           </spacer>
           </item>
          </layout>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_6">
-          <item>
-           <widget class="QLabel" name="lbl_build_up_to">
-            <property name="text">
-             <string>Up To</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QComboBox" name="combo_build_up_to">
-            <item>
-             <property name="text">
-              <string notr="true">Fetch</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string notr="true">Unpack</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string notr="true">Setup</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string notr="true">Build</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string notr="true">Install</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string notr="true">Check</string>
-             </property>
-            </item>
-           </widget>
-          </item>
-          <item>
-           <widget class="QToolButton" name="tb_build_up_to">
-            <property name="toolTip">
-             <string>Build up to selected (see pisi help build)</string>
-            </property>
-            <property name="statusTip">
-             <string>Build up to selected (see pisi help build)</string>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-            <property name="icon">
-             <iconset resource="../resources/pisido.qrc">
-              <normaloff>:/images/build.png</normaloff>:/images/build.png</iconset>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="horizontalLayout">
-          <item>
-           <widget class="QLabel" name="lbl_build_all">
-            <property name="text">
-             <string>Build All</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QToolButton" name="tb_build_all">
-            <property name="toolTip">
-             <string>Create build files in to the package directory and builds package</string>
-            </property>
-            <property name="statusTip">
-             <string>Create build files in to the package directory and builds package</string>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-            <property name="icon">
-             <iconset resource="../resources/pisido.qrc">
-              <normaloff>:/images/build.png</normaloff>:/images/build.png</iconset>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <spacer name="verticalSpacer">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>40</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-       </layout>
-      </widget>
+        </widget>
+       </item>
+      </layout>
      </item>
     </layout>
    </widget>

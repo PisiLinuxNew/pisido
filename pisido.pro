@@ -21,7 +21,7 @@ LANGUAGE = C++
 
 VERSION = 2.3.5
 DEFINES += PISIDO_VERSION=\\\"$$VERSION\\\"
-LIBS += -lqscintilla2                       # pisilinux2.0 da bu kodu kaldırmak gerekti qtcreatorda
+LIBS += -lqscintilla2                       # pisilinux2.0 da bu kodu kaldırmak gerekti 'qtcreator'da
 INCLUDEPATH += ./h
 
 

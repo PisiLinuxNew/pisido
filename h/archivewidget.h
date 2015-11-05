@@ -27,11 +27,14 @@ public:
     QString get_sha1();
     QString get_type();
 
+    void set_sha1(QString sha1);
+
 signals:
     void delete_me(ArchiveWidget *);
 
 private slots:
     void on_tb_delete_clicked();
+
 
 private:
     Ui::ArchiveWidget *ui;

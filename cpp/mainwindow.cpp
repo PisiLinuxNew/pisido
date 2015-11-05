@@ -1802,20 +1802,14 @@ void MainWindow::call_pisi_build_command(const QString &build_step)
         model->clear();
     }
 
-    QProcess *p=new QProcess(0);
     QStringList argmnt;
     argmnt << "-u"
            << "root"
            << "pisi";
     //qDebug()<<argmnt.last();
-    p->start("pgrep",argmnt);
-    if(!p->isOpen())
-        qDebug() << "process is not open";
-    p->waitForBytesWritten();
-    p->waitForFinished();
-    QString out=QString(p->readAll());
+
+    QString out=run_process("pgrep",argmnt);
     started_process_count=out.split("\n").count();
-    delete p;
 
     QString command;
     if(docker_is_running){
@@ -1869,18 +1863,12 @@ void MainWindow::on_btn_remove_package_clicked(){
 void MainWindow::time_elapsed(){
     int elapsed_time=time.elapsed()/1000;
 
-    QProcess *p=new QProcess(0);
     QStringList argmnt;
     argmnt << "-u"
            << "root"
            << "pisi";
     //qDebug()<<argmnt.last();
-    p->start("pgrep",argmnt);
-    if(!p->isOpen())
-        qDebug() << "process is not open";
-    p->waitForBytesWritten();
-    p->waitForFinished();
-    QString out=QString(p->readAll());
+    QString out=run_process("pgrep",argmnt);//QString(p->readAll());
     //qDebug() << QString("Out : %1").arg(out);
 
     setWindowTitle("PisiDo - "+QString("%1:%2:%3")
@@ -1888,19 +1876,16 @@ void MainWindow::time_elapsed(){
                    .arg((elapsed_time/60)%60, 2, 10, QChar('0'))
                    .arg(elapsed_time%60, 2, 10, QChar('0')));
 
-        if (out.split("\n").count()==started_process_count) {
-            timer->stop();
-            start_process=false;
-            QMessageBox::information(0,tr("Elapsed Time"),tr("   %1:%2:%3   ")
-                                     .arg(elapsed_time/3600, 2, 10, QChar('0'))
-                                     .arg((elapsed_time/60)%60, 2, 10, QChar('0'))
-                                     .arg(elapsed_time%60, 2, 10, QChar('0')));
-            disconnect(timer,SIGNAL(timeout()),this,SLOT(time_elapsed()));
-            timer->disconnect(timer,SIGNAL(timeout()),this,SLOT(time_elapsed()));
-        }
-
-    p->terminate();
-    delete p;
+    if (out.split("\n").count()==started_process_count) {
+        timer->stop();
+        start_process=false;
+        QMessageBox::information(0,tr("Elapsed Time"),tr("   %1:%2:%3   ")
+                                 .arg(elapsed_time/3600, 2, 10, QChar('0'))
+                                 .arg((elapsed_time/60)%60, 2, 10, QChar('0'))
+                                 .arg(elapsed_time%60, 2, 10, QChar('0')));
+        disconnect(timer,SIGNAL(timeout()),this,SLOT(time_elapsed()));
+        timer->disconnect(timer,SIGNAL(timeout()),this,SLOT(time_elapsed()));
+    }
 }
 
 void MainWindow::save_act_editor_conf(){
@@ -1988,7 +1973,7 @@ void MainWindow::on_action_Run_Docker_triggered(){
     ui->action_Update_Docker->setEnabled(true);
     ui->action_Clear_Docker->setEnabled(true);
     ui->tb_docker_container->setEnabled(true);
-
+    qDebug() << "outputdir: "+ output_dir.absolutePath();
     QString command = QString(/*"docker pull ertugerata/pisi-chroot-farm && " +*/
                               QString("docker run -v %1:/git ").arg(workspace_dir.absolutePath()) +
                               QString("-v %1:/root ").arg(output_dir.absolutePath()) +
@@ -2047,25 +2032,15 @@ void MainWindow::action_Find_docker_containers_triggered(){
     Containers_name.clear();
     Containers.clear();
 
-    QProcess *p=new QProcess(0);
-
     QStringList argmnt;
     argmnt << "ps"
            << "-a";
-    p->start("docker",argmnt);
-    if(!p->isOpen())
-        qDebug() << "process is not open";
-
-    p->waitForBytesWritten();
-    p->waitForFinished();
-    QString out=QString(p->readAll());
+    QString out=run_process("docker",argmnt);//QString(p->readAll());
     QStringList lines=out.split("\n");
     //qDebug()<< lines;
-    p->close();
+
 
     ui->actionRemove_Containers->setEnabled(true);
-
-    delete p;
 
     for (int i=1;i<lines.length()-1;i++){
         bool iscontain=false;
@@ -2161,4 +2136,37 @@ void MainWindow::on_actionRemove_Containers_triggered(){
         w_terminal->sendText(command);
     }
     action_Find_docker_containers_triggered();
+}
+
+void MainWindow::on_pb_sha1sum_clicked(){
+    if(archive_widgets.count()==0){
+        QMessageBox::warning(0,trUtf8("Warning"),trUtf8("Please enter package data."));
+        return;
+    }
+//    qDebug() << "archive path : "
+//                + archives_dir.absolutePath()
+//                + "/"
+//                +archive_widgets[0]->get_archive().split("/").last();
+    for (int i=0;i<archive_widgets.count();i++){
+        QStringList argmnt;
+        argmnt << archives_dir.absolutePath() + "/" + archive_widgets[i]->get_archive().split("/").last();
+        QString out=run_process("sha1sum",argmnt).split(" ").first();
+    //    qDebug()<< out;
+        archive_widgets[i]->set_sha1(out);
+    }
+}
+
+QString MainWindow::run_process(QString name, QStringList arg ){
+    QProcess *p=new QProcess(0);
+
+    p->start(name,arg);
+    if(!p->isOpen())
+        qDebug() << QString("%1 process is not open").arg(name);
+
+    p->waitForBytesWritten();
+    p->waitForFinished();
+    QString result=QString(p->readAll());
+    delete p;
+
+    return result;
 }

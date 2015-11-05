@@ -43,3 +43,7 @@ QString ArchiveWidget::get_type()
 {
     return ui->combo_type->currentText();
 }
+
+void ArchiveWidget::set_sha1(QString sha1){
+    ui->le_sha1->setText(sha1);
+}

@@ -166,6 +166,8 @@ private slots:
     void on_action_Refresh_Container_triggered();
     void on_actionRemove_Containers_triggered();
 
+    void on_pb_sha1sum_clicked();
+
 
 protected:
     virtual void closeEvent(QCloseEvent * event);
@@ -246,6 +248,8 @@ private:
     void pisi_to_gui() throw (QString);
     void pisi_from_gui() throw (QString);
     void save_package(int key);
+
+    QString run_process(QString name, QStringList arg );
 
     bool Zoom,start_process,first_run,docker_is_running;
 

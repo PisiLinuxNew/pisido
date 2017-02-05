@@ -44,8 +44,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>296</width>
-         <height>810</height>
+         <width>314</width>
+         <height>960</height>
         </rect>
        </property>
        <layout class="QGridLayout" name="gridLayout">
@@ -295,7 +295,16 @@ p, li { white-space: pre-wrap; }
            <enum>QFrame::Raised</enum>
           </property>
           <layout class="QGridLayout" name="gridLayout_7">
-           <property name="margin">
+           <property name="leftMargin">
+            <number>4</number>
+           </property>
+           <property name="topMargin">
+            <number>4</number>
+           </property>
+           <property name="rightMargin">
+            <number>4</number>
+           </property>
+           <property name="bottomMargin">
             <number>4</number>
            </property>
            <item row="0" column="1">
@@ -331,7 +340,16 @@ p, li { white-space: pre-wrap; }
            <enum>QFrame::Raised</enum>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_4">
-           <property name="margin">
+           <property name="leftMargin">
+            <number>4</number>
+           </property>
+           <property name="topMargin">
+            <number>4</number>
+           </property>
+           <property name="rightMargin">
+            <number>4</number>
+           </property>
+           <property name="bottomMargin">
             <number>4</number>
            </property>
            <item>
@@ -488,7 +506,7 @@ p, li { white-space: pre-wrap; }
      <x>0</x>
      <y>0</y>
      <width>909</width>
-     <height>20</height>
+     <height>30</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -537,7 +555,7 @@ p, li { white-space: pre-wrap; }
    </widget>
    <widget class="QMenu" name="menuDocker">
     <property name="title">
-     <string>Docker</string>
+     <string>Doc&amp;ker</string>
     </property>
     <addaction name="action_Start_Daemon"/>
     <addaction name="separator"/>
@@ -571,7 +589,7 @@ p, li { white-space: pre-wrap; }
     <string>History Window</string>
    </property>
    <property name="windowTitle">
-    <string>History</string>
+    <string>Histor&amp;y</string>
    </property>
    <attribute name="dockWidgetArea">
     <number>8</number>
@@ -694,7 +712,7 @@ p, li { white-space: pre-wrap; }
     <string>Actions File Window</string>
    </property>
    <property name="windowTitle">
-    <string>Actions</string>
+    <string>A&amp;ctions</string>
    </property>
    <attribute name="dockWidgetArea">
     <number>2</number>
@@ -834,7 +852,7 @@ p, li { white-space: pre-wrap; }
     <string>Build Window</string>
    </property>
    <property name="windowTitle">
-    <string>Build</string>
+    <string>&amp;Build</string>
    </property>
    <attribute name="dockWidgetArea">
     <number>8</number>
@@ -1027,7 +1045,7 @@ p, li { white-space: pre-wrap; }
     <string>Install Files Window</string>
    </property>
    <property name="windowTitle">
-    <string>Installs</string>
+    <string>&amp;Installs</string>
    </property>
    <attribute name="dockWidgetArea">
     <number>2</number>
@@ -1384,7 +1402,7 @@ And than you can define priority in here.</string>
     <string>Aditional Files Window</string>
    </property>
    <property name="windowTitle">
-    <string>Aditionals</string>
+    <string>Aditio&amp;nals</string>
    </property>
    <attribute name="dockWidgetArea">
     <number>8</number>
@@ -1620,7 +1638,7 @@ And than you can edit their properties in here</string>
   </widget>
   <widget class="QDockWidget" name="dw_dd_terminal">
    <property name="windowTitle">
-    <string>Docker Daemon</string>
+    <string>&amp;Docker Daemon</string>
    </property>
    <attribute name="dockWidgetArea">
     <number>8</number>
@@ -1806,7 +1824,7 @@ And than you can edit their properties in here</string>
      <normaloff>:/images/log.png</normaloff>:/images/log.png</iconset>
    </property>
    <property name="text">
-    <string>Open Log</string>
+    <string>Open &amp;Log</string>
    </property>
    <property name="iconText">
     <string>Open Log</string>
@@ -1824,7 +1842,7 @@ And than you can edit their properties in here</string>
      <normaloff>:/images/run.png</normaloff>:/images/run.png</iconset>
    </property>
    <property name="text">
-    <string>Run</string>
+    <string>&amp;Run</string>
    </property>
   </action>
   <action name="action_Clear_Docker">
@@ -1832,7 +1850,7 @@ And than you can edit their properties in here</string>
     <bool>false</bool>
    </property>
    <property name="text">
-    <string>Clear</string>
+    <string>C&amp;lear</string>
    </property>
   </action>
   <action name="action_Update_Docker">
@@ -1844,7 +1862,7 @@ And than you can edit their properties in here</string>
      <normaloff>:/images/update.png</normaloff>:/images/update.png</iconset>
    </property>
    <property name="text">
-    <string>Update</string>
+    <string>&amp;Update</string>
    </property>
   </action>
   <action name="action_Checkelf">
@@ -1852,7 +1870,7 @@ And than you can edit their properties in here</string>
     <bool>false</bool>
    </property>
    <property name="text">
-    <string>Checkelf</string>
+    <string>&amp;Checkelf</string>
    </property>
   </action>
   <action name="action_Exit_Container">
@@ -1864,12 +1882,12 @@ And than you can edit their properties in here</string>
      <normaloff>:/images/docker-exit.png</normaloff>:/images/docker-exit.png</iconset>
    </property>
    <property name="text">
-    <string>Exit Container</string>
+    <string>&amp;Exit Container</string>
    </property>
   </action>
   <action name="action_Start_Daemon">
    <property name="text">
-    <string>Start Daemon</string>
+    <string>&amp;Start Daemon</string>
    </property>
   </action>
   <action name="action_Refresh_Container">
@@ -1877,7 +1895,7 @@ And than you can edit their properties in here</string>
     <bool>false</bool>
    </property>
    <property name="text">
-    <string>Refresh Container</string>
+    <string>Re&amp;fresh Container</string>
    </property>
   </action>
   <action name="actionRemove_Containers">
@@ -1885,7 +1903,7 @@ And than you can edit their properties in here</string>
     <bool>false</bool>
    </property>
    <property name="text">
-    <string>Remove Containers</string>
+    <string>Re&amp;move Containers</string>
    </property>
   </action>
  </widget>

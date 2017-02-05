@@ -50,7 +50,7 @@ Required pakages can install on to PisiLinux like this :
     sudo pisi it -c system.devel
     sudo pisi it qt-creator
     sudo pisi it qscintilla2-devel
-    sudo pisi it qtermwidget-devel
+    sudo pisi it qtermwidget5-devel
 
 To compile and run program enter these commands :
 

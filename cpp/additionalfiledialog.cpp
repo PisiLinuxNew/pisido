@@ -1,11 +1,11 @@
-#include "aditionalfiledialog.h"
-#include "ui_aditionalfiledialog.h"
+#include "additionalfiledialog.h"
+#include "ui_additionalfiledialog.h"
 
 #include <QChar>
 
-AditionalFileDialog::AditionalFileDialog(QWidget *parent, QString a_file, QMap<PisiSPBase::AFileAttr, QString> attr) :
+AdditionalFileDialog::AdditionalFileDialog(QWidget *parent, QString a_file, QMap<PisiSPBase::AFileAttr, QString> attr) :
     QDialog(parent),
-    ui(new Ui::AditionalFileDialog),
+    ui(new Ui::AdditionalFileDialog),
     a_file(a_file),
     attr(attr)
 {
@@ -20,12 +20,12 @@ AditionalFileDialog::AditionalFileDialog(QWidget *parent, QString a_file, QMap<P
     connect(this, SIGNAL(accepted()), SLOT(dialog_accepted()));
 }
 
-AditionalFileDialog::~AditionalFileDialog()
+AdditionalFileDialog::~AdditionalFileDialog()
 {
     delete ui;
 }
 
-void AditionalFileDialog::dialog_accepted()
+void AdditionalFileDialog::dialog_accepted()
 {
     a_file = ui->le_file->text();
     QMap<PisiSPBase::AFileAttr,QString> attr;
@@ -36,7 +36,7 @@ void AditionalFileDialog::dialog_accepted()
     this->attr = attr;
 }
 
-QString AditionalFileDialog::get_permissions()
+QString AdditionalFileDialog::get_permissions()
 {
     quint8 special =
             (ui->c_uid->isChecked() ? 0x04 : 0)
@@ -58,7 +58,7 @@ QString AditionalFileDialog::get_permissions()
     return permission;
 }
 
-void AditionalFileDialog::set_permissions(const QString & permission)
+void AdditionalFileDialog::set_permissions(const QString & permission)
 {
     QString perm = permission.rightJustified(4, '0');
     if(perm.count() > 4)
@@ -81,7 +81,7 @@ void AditionalFileDialog::set_permissions(const QString & permission)
     ui->c_o_x->setChecked(others & 0x01);
 }
 
-QMap<PisiSPBase::AFileAttr,QString> AditionalFileDialog::get_attr()
+QMap<PisiSPBase::AFileAttr,QString> AdditionalFileDialog::get_attr()
 {
     return attr;
 }

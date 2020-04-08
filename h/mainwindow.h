@@ -53,7 +53,7 @@ private slots:
 
     void clear_tableW_files();
     void clear_tableW_patches();
-    void clear_tableW_aditional_files();
+    void clear_tableW_additional_files();
     void clear_tableW_history();
     void clear_archive_widgets();
     void clear_translation_widgets();
@@ -100,11 +100,11 @@ private slots:
     void on_tb_patch_up_clicked();
     void on_tb_patch_down_clicked();
 
-    void on_tb_edit_aditional_files_clicked();
+    void on_tb_edit_additional_files_clicked();
 
     void on_tb_open_patches_dir_clicked();
 
-    void on_tb_open_aditional_files_dir_clicked();
+    void on_tb_open_additional_files_dir_clicked();
 
     void on_tb_open_install_dir_clicked();
 
@@ -128,7 +128,7 @@ private slots:
 
     void on_tb_refresh_tableW_patches_clicked();
 
-    void on_tb_refresh_tableW_aditional_files_clicked();
+    void on_tb_refresh_tableW_additional_files_clicked();
 
     void on_tb_add_translation_clicked();
 
@@ -214,8 +214,8 @@ private:
     QString runtime_dependency;
     QMultiMap<int, QString> patches;
     QMultiMap<int, QString> temp_patches;
-    QMap<QString, QMap<PisiSPBase::AFileAttr,QString> > aditional_files;
-    QMap<QString, QMap<PisiSPBase::AFileAttr,QString> > temp_aditional_files;
+    QMap<QString, QMap<PisiSPBase::AFileAttr,QString> > additional_files;
+    QMap<QString, QMap<PisiSPBase::AFileAttr,QString> > temp_additional_files;
     QMap<QString, QMap<QString, bool> > files;
 
     QListWidgetItem *lw_item;
@@ -240,7 +240,7 @@ private:
     PisiUpdate get_history_update(int row) throw(QString);
     void set_history_update(const PisiUpdate & update);
     void fill_tableW_patches();
-    void fill_tableW_aditional_files();
+    void fill_tableW_additional_files();
 
     bool create_build_files();
     void call_pisi_build_command(const QString & build_step = QString());

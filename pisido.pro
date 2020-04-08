@@ -15,6 +15,8 @@ greaterThan(QT_MAJOR_VERSION, 4){
     LIBS += -lqtermwidget4
 }
 
+system(lrelease translations/*.ts)
+
 TARGET = pisido
 TEMPLATE = app
 LANGUAGE = C++
@@ -94,7 +96,7 @@ SOURCES += \
     cpp/addupdatedialog.cpp \
     cpp/languagedialog.cpp \
     cpp/workspacedialog.cpp \
-    cpp/aditionalfiledialog.cpp \
+    cpp/additionalfiledialog.cpp \
     cpp/addinstallfilelabeldialog.cpp \
     cpp/archiveselectiondialog.cpp \
     cpp/archivewidget.cpp \
@@ -116,7 +118,7 @@ HEADERS += \
     h/addupdatedialog.h \
     h/languagedialog.h \
     h/workspacedialog.h \
-    h/aditionalfiledialog.h \
+    h/additionalfiledialog.h \
     h/addinstallfilelabeldialog.h \
     h/archiveselectiondialog.h \
     h/archivewidget.h \
@@ -132,7 +134,7 @@ FORMS += \
     ui/addupdatedialog.ui \
     ui/languagedialog.ui \
     ui/workspacedialog.ui \
-    ui/aditionalfiledialog.ui \
+    ui/additionalfiledialog.ui \
     ui/addinstallfilelabeldialog.ui \
     ui/archiveselectiondialog.ui \
     ui/archivewidget.ui \

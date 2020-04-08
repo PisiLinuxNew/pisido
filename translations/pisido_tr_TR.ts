@@ -193,100 +193,100 @@
     </message>
 </context>
 <context>
-    <name>AditionalFileDialog</name>
+    <name>AdditionalFileDialog</name>
     <message>
-        <location filename="../ui/aditionalfiledialog.ui" line="14"/>
+        <location filename="../ui/additionalfiledialog.ui" line="14"/>
         <source>Edit AdditionalFile</source>
         <translation>Ek Dosyayı Düzenle</translation>
     </message>
     <message>
-        <location filename="../ui/aditionalfiledialog.ui" line="20"/>
+        <location filename="../ui/additionalfiledialog.ui" line="20"/>
         <source>Additional File</source>
         <translation>Ek Dosya</translation>
     </message>
     <message>
-        <location filename="../ui/aditionalfiledialog.ui" line="26"/>
+        <location filename="../ui/additionalfiledialog.ui" line="26"/>
         <source>File</source>
         <translation>Dosya</translation>
     </message>
     <message>
-        <location filename="../ui/aditionalfiledialog.ui" line="40"/>
+        <location filename="../ui/additionalfiledialog.ui" line="40"/>
         <source>Target</source>
         <translation>Hedef</translation>
     </message>
     <message>
-        <location filename="../ui/aditionalfiledialog.ui" line="47"/>
+        <location filename="../ui/additionalfiledialog.ui" line="47"/>
         <source>Ex: /usr/share/__package_name__/, /usr/bin/xxx</source>
         <translation>Ör: /usr/share/__package_name__/, /usr/bin/xxx</translation>
     </message>
     <message>
-        <location filename="../ui/aditionalfiledialog.ui" line="54"/>
+        <location filename="../ui/additionalfiledialog.ui" line="54"/>
         <source>Permission</source>
         <translation>Yetki</translation>
     </message>
     <message>
-        <location filename="../ui/aditionalfiledialog.ui" line="67"/>
+        <location filename="../ui/additionalfiledialog.ui" line="67"/>
         <source>Read</source>
         <translation>Okuma</translation>
     </message>
     <message>
-        <location filename="../ui/aditionalfiledialog.ui" line="74"/>
+        <location filename="../ui/additionalfiledialog.ui" line="74"/>
         <source>Write</source>
         <translation>Yazma</translation>
     </message>
     <message>
-        <location filename="../ui/aditionalfiledialog.ui" line="81"/>
+        <location filename="../ui/additionalfiledialog.ui" line="81"/>
         <source>Execute</source>
         <translation>Çalıştırma</translation>
     </message>
     <message>
-        <location filename="../ui/aditionalfiledialog.ui" line="88"/>
+        <location filename="../ui/additionalfiledialog.ui" line="88"/>
         <source>User</source>
         <translation>Kullanıcı</translation>
     </message>
     <message>
-        <location filename="../ui/aditionalfiledialog.ui" line="109"/>
-        <location filename="../ui/aditionalfiledialog.ui" line="233"/>
+        <location filename="../ui/additionalfiledialog.ui" line="109"/>
+        <location filename="../ui/additionalfiledialog.ui" line="233"/>
         <source>Group</source>
         <translation>Grup</translation>
     </message>
     <message>
-        <location filename="../ui/aditionalfiledialog.ui" line="137"/>
+        <location filename="../ui/additionalfiledialog.ui" line="137"/>
         <source>Others</source>
         <translation>Diğerleri</translation>
     </message>
     <message>
-        <location filename="../ui/aditionalfiledialog.ui" line="165"/>
+        <location filename="../ui/additionalfiledialog.ui" line="165"/>
         <source>Special</source>
         <translation>Özel</translation>
     </message>
     <message>
-        <location filename="../ui/aditionalfiledialog.ui" line="195"/>
+        <location filename="../ui/additionalfiledialog.ui" line="195"/>
         <source>UID Enabled</source>
         <translation>UID Ayarla</translation>
     </message>
     <message>
-        <location filename="../ui/aditionalfiledialog.ui" line="202"/>
+        <location filename="../ui/additionalfiledialog.ui" line="202"/>
         <source>GID Enabled</source>
         <translation>GID Ayarla</translation>
     </message>
     <message>
-        <location filename="../ui/aditionalfiledialog.ui" line="209"/>
+        <location filename="../ui/additionalfiledialog.ui" line="209"/>
         <source>Sticky</source>
         <translation>Yapışkan</translation>
     </message>
     <message>
-        <location filename="../ui/aditionalfiledialog.ui" line="219"/>
+        <location filename="../ui/additionalfiledialog.ui" line="219"/>
         <source>Owner</source>
         <translation>Sahibi</translation>
     </message>
     <message>
-        <location filename="../ui/aditionalfiledialog.ui" line="226"/>
+        <location filename="../ui/additionalfiledialog.ui" line="226"/>
         <source>Owner of the target file</source>
         <translation>Hedef dosyanın sahibi</translation>
     </message>
     <message>
-        <location filename="../ui/aditionalfiledialog.ui" line="240"/>
+        <location filename="../ui/additionalfiledialog.ui" line="240"/>
         <source>Group of the target file</source>
         <translation>Hedef dosyanın grubu</translation>
     </message>
@@ -842,19 +842,19 @@ Daha sonra buradan önceliği belirleyin.</translation>
     <message>
         <location filename="../ui/mainwindow.ui" line="1296"/>
         <location filename="../ui/mainwindow.ui" line="1299"/>
-        <source>Aditional Files Window</source>
+        <source>Additional Files Window</source>
         <translation>Ek Dosyalar Penceresi</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="1360"/>
-        <source>Add your aditional files to package files directory (workspace/__package_name__/files/).
+        <source>Add your additional files to package files directory (workspace/__package_name__/files/).
 And than you can edit their properties in here</source>
         <translation>Ek dosyalarınızı paket dosyaları dizinine ekleyin (workspace/__package_name__/files/).
 Daha sonra buradan önceliği belirleyin</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="1364"/>
-        <source>Add your aditional files to package files directory (workspace/__package_name__/files/).\nAnd than you can edit their properties in here</source>
+        <source>Add your additional files to package files directory (workspace/__package_name__/files/).\nAnd than you can edit their properties in here</source>
         <translation>Ek dosyalarınızı paket dosyaları dizinine ekleyin (workspace/__package_name__/files/).Daha sonra buradan önceliği belirleyin</translation>
     </message>
     <message>
@@ -886,7 +886,7 @@ Daha sonra buradan önceliği belirleyin</translation>
     <message>
         <location filename="../ui/mainwindow.ui" line="1317"/>
         <location filename="../ui/mainwindow.ui" line="1320"/>
-        <source>Opens aditional files directory (workspace/__package_name__/files/)</source>
+        <source>Opens additional files directory (workspace/__package_name__/files/)</source>
         <translation>Ek dosyalar dizinini açar (workspace/__package_name__/files/)</translation>
     </message>
     <message>
@@ -1170,7 +1170,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="1302"/>
-        <source>Aditionals</source>
+        <source>Additionals</source>
         <translation>Ekler</translation>
     </message>
     <message>
@@ -1807,8 +1807,8 @@ Uygulama birden fazla paketi desteklemiyor !
     </message>
     <message>
         <location filename="../cpp/pisispbase.cpp" line="480"/>
-        <source>Wrong aditional_files atribute name : %1</source>
-        <translation>AditionalFiles özelliğinin adı yanlış : %1</translation>
+        <source>Wrong additional_files atribute name : %1</source>
+        <translation>AdditionalFiles özelliğinin adı yanlış : %1</translation>
     </message>
     <message>
         <location filename="../cpp/pisiupdate.cpp" line="23"/>

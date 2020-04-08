@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>AditionalFileDialog</class>
- <widget class="QDialog" name="AditionalFileDialog">
+ <class>AdditionalFileDialog</class>
+ <widget class="QDialog" name="AdditionalFileDialog">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -293,7 +293,7 @@
   <connection>
    <sender>buttonBox</sender>
    <signal>accepted()</signal>
-   <receiver>AditionalFileDialog</receiver>
+   <receiver>AdditionalFileDialog</receiver>
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -309,7 +309,7 @@
   <connection>
    <sender>buttonBox</sender>
    <signal>rejected()</signal>
-   <receiver>AditionalFileDialog</receiver>
+   <receiver>AdditionalFileDialog</receiver>
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">

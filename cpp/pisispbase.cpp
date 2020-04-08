@@ -19,7 +19,7 @@ void PisiSPBase::clear()
     licenses.clear();
     is_a_s.clear();
     build_dependencies.clear();
-    aditional_files.clear();
+    additional_files.clear();
 }
 
 void PisiSPBase::load_from_dom(const QDomElement & root) throw(QString)
@@ -55,7 +55,7 @@ void PisiSPBase::load_from_dom(const QDomElement & root) throw(QString)
     elm = root.firstChildElement("BuildDependencies");
     build_dependencies = get_dependency(elm);
     elm = root.firstChildElement("AdditionalFiles");
-    aditional_files = get_aditional_file(elm);
+    additional_files = get_additional_file(elm);
 }
 
 void PisiSPBase::save_to_dom(QDomElement & root) throw(QString)
@@ -90,14 +90,14 @@ void PisiSPBase::save_to_dom(QDomElement & root) throw(QString)
         set_dependency(elm, build_dependencies);
     }
 
-    if( ! aditional_files.isEmpty())
+    if( ! additional_files.isEmpty())
     {
         // optional
         QDomElement elm = root.firstChildElement("AdditionalFiles");
         if( ! elm.isNull())
             root.removeChild(elm);
         elm = append_element(root, "AdditionalFiles");
-        set_aditional_file(elm, aditional_files);
+        set_additional_file(elm, additional_files);
     }
 
 }
@@ -142,9 +142,9 @@ QMap<QString, QMap<PisiSPBase::VRTFAttr,QString> > PisiSPBase::get_build_depende
     return build_dependencies;
 }
 
-QMap<QString, QMap<PisiSPBase::AFileAttr,QString> > PisiSPBase::get_aditional_files() const
+QMap<QString, QMap<PisiSPBase::AFileAttr,QString> > PisiSPBase::get_additional_files() const
 {
-    return aditional_files;
+    return additional_files;
 }
 
 void PisiSPBase::set_name(QString name) throw(QString)
@@ -201,10 +201,10 @@ void PisiSPBase::set_build_dependencies(QString build_dependency_string)
     set_build_dependencies(build_dependencies);
 }
 
-void PisiSPBase::set_aditional_files(QMap<QString, QMap<PisiSPBase::AFileAttr,QString> > aditional_files)
+void PisiSPBase::set_additional_files(QMap<QString, QMap<PisiSPBase::AFileAttr,QString> > additional_files)
 {
     // optional, no check
-    this->aditional_files = aditional_files;
+    this->additional_files = additional_files;
 }
 
 QString PisiSPBase::get_element_value(QDomElement root, QString tag) throw(QString)
@@ -406,7 +406,7 @@ QString PisiSPBase::get_dependency_attribute(PisiSPBase::VRTFAttr attr, bool abb
     }
 }
 
-QMap<QString, QMap<PisiSPBase::AFileAttr,QString> > PisiSPBase::get_aditional_file(QDomElement elm) throw(QString)
+QMap<QString, QMap<PisiSPBase::AFileAttr,QString> > PisiSPBase::get_additional_file(QDomElement elm) throw(QString)
 {
     if(elm.isNull())
     {
@@ -419,7 +419,7 @@ QMap<QString, QMap<PisiSPBase::AFileAttr,QString> > PisiSPBase::get_aditional_fi
         return QMap<QString, QMap<AFileAttr,QString> >();
     }
 
-    QMap<QString, QMap<AFileAttr,QString> > aditional_files;
+    QMap<QString, QMap<AFileAttr,QString> > additional_files;
 
     for( ; ! elm.isNull(); elm = elm.nextSiblingElement("AdditionalFile"))
     {
@@ -432,41 +432,41 @@ QMap<QString, QMap<PisiSPBase::AFileAttr,QString> > PisiSPBase::get_aditional_fi
             QDomAttr a = n.toAttr();
             if(a.isNull())
                 throw QObject::tr("Can not convert to attribute !");
-            attributes[get_aditional_file_attribute(a.name())] = a.value();
+            attributes[get_additional_file_attribute(a.name())] = a.value();
 //            qDebug() << "AFileAttr = " << a.name() << " : " << a.value();
         }
-        aditional_files[elm.text()] = attributes;
+        additional_files[elm.text()] = attributes;
 //        qDebug() << "AFile:" << elm.text();
     }
-    return aditional_files;
+    return additional_files;
 }
 
-void PisiSPBase::set_aditional_file(QDomElement root, QMap<QString, QMap<AFileAttr,QString> > a_files)
+void PisiSPBase::set_additional_file(QDomElement root, QMap<QString, QMap<AFileAttr,QString> > a_files)
 {
     if(a_files.isEmpty())
     {
         return;
     }
 
-    QList<QString> aditional_files = a_files.keys();
-    for(int i=0; i<aditional_files.count(); ++i)
+    QList<QString> additional_files = a_files.keys();
+    for(int i=0; i<additional_files.count(); ++i)
     {
-        QString aditional_file = aditional_files.at(i);
+        QString additional_file = additional_files.at(i);
         QDomElement elm = append_element(root, "AdditionalFile");
-        append_text_element(elm, aditional_file);
+        append_text_element(elm, additional_file);
 
-        QMap<AFileAttr,QString> attr = a_files[aditional_file];
+        QMap<AFileAttr,QString> attr = a_files[additional_file];
         QList<AFileAttr> attributes = attr.keys();
         for(int j=0; j<attributes.count(); ++j)
         {
             AFileAttr a = attributes.at(j);
             QString a_value = attr[a];
-            elm.setAttribute(get_aditional_file_attribute(a), a_value);
+            elm.setAttribute(get_additional_file_attribute(a), a_value);
         }
     }
 }
 
-PisiSPBase::AFileAttr PisiSPBase::get_aditional_file_attribute(QString attr_name) throw(QString)
+PisiSPBase::AFileAttr PisiSPBase::get_additional_file_attribute(QString attr_name) throw(QString)
 {
         if(attr_name.toLower() == "target")
             return TARGET;
@@ -477,10 +477,10 @@ PisiSPBase::AFileAttr PisiSPBase::get_aditional_file_attribute(QString attr_name
         else if(attr_name.toLower() == "group")
             return GROUP;
         else
-            throw QObject::tr("Wrong aditional_files atribute name : %1").arg(attr_name);
+            throw QObject::tr("Wrong additional_files atribute name : %1").arg(attr_name);
 }
 
-QString PisiSPBase::get_aditional_file_attribute(PisiSPBase::AFileAttr attr)
+QString PisiSPBase::get_additional_file_attribute(PisiSPBase::AFileAttr attr)
 {
     switch(attr)
     {
@@ -590,7 +590,7 @@ bool PisiSPBase::operator ==(const PisiSPBase & other) const
                 && get_licenses()           == other.get_licenses()
                 && get_is_a_s()             == other.get_is_a_s()
                 && get_build_dependencies() == other.get_build_dependencies()
-                && get_aditional_files()    == other.get_aditional_files()
+                && get_additional_files()    == other.get_additional_files()
                 );
 }
 

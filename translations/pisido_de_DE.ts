@@ -193,100 +193,100 @@
     </message>
 </context>
 <context>
-    <name>AditionalFileDialog</name>
+    <name>AdditionalFileDialog</name>
     <message>
-        <location filename="../ui/aditionalfiledialog.ui" line="14"/>
+        <location filename="../ui/additionalfiledialog.ui" line="14"/>
         <source>Edit AdditionalFile</source>
         <translation>Zusätzliche Datei bearbeiten</translation>
     </message>
     <message>
-        <location filename="../ui/aditionalfiledialog.ui" line="20"/>
+        <location filename="../ui/additionalfiledialog.ui" line="20"/>
         <source>Additional File</source>
         <translation>Zusätzliche Datei</translation>
     </message>
     <message>
-        <location filename="../ui/aditionalfiledialog.ui" line="26"/>
+        <location filename="../ui/additionalfiledialog.ui" line="26"/>
         <source>File</source>
         <translation>Datei</translation>
     </message>
     <message>
-        <location filename="../ui/aditionalfiledialog.ui" line="40"/>
+        <location filename="../ui/additionalfiledialog.ui" line="40"/>
         <source>Target</source>
         <translation>Ziel</translation>
     </message>
     <message>
-        <location filename="../ui/aditionalfiledialog.ui" line="47"/>
+        <location filename="../ui/additionalfiledialog.ui" line="47"/>
         <source>Ex: /usr/share/__package_name__/, /usr/bin/xxx</source>
         <translation>Ex: /usr/share/__paket_name__/, /usr/bin/xxx</translation>
     </message>
     <message>
-        <location filename="../ui/aditionalfiledialog.ui" line="54"/>
+        <location filename="../ui/additionalfiledialog.ui" line="54"/>
         <source>Permission</source>
         <translation>Erlaubnis</translation>
     </message>
     <message>
-        <location filename="../ui/aditionalfiledialog.ui" line="67"/>
+        <location filename="../ui/additionalfiledialog.ui" line="67"/>
         <source>Read</source>
         <translation>Lesen</translation>
     </message>
     <message>
-        <location filename="../ui/aditionalfiledialog.ui" line="74"/>
+        <location filename="../ui/additionalfiledialog.ui" line="74"/>
         <source>Write</source>
         <translation>Schreiben</translation>
     </message>
     <message>
-        <location filename="../ui/aditionalfiledialog.ui" line="81"/>
+        <location filename="../ui/additionalfiledialog.ui" line="81"/>
         <source>Execute</source>
         <translation>Ausführen</translation>
     </message>
     <message>
-        <location filename="../ui/aditionalfiledialog.ui" line="88"/>
+        <location filename="../ui/additionalfiledialog.ui" line="88"/>
         <source>User</source>
         <translation>Benutzer</translation>
     </message>
     <message>
-        <location filename="../ui/aditionalfiledialog.ui" line="109"/>
-        <location filename="../ui/aditionalfiledialog.ui" line="233"/>
+        <location filename="../ui/additionalfiledialog.ui" line="109"/>
+        <location filename="../ui/additionalfiledialog.ui" line="233"/>
         <source>Group</source>
         <translation>Gruppe</translation>
     </message>
     <message>
-        <location filename="../ui/aditionalfiledialog.ui" line="137"/>
+        <location filename="../ui/additionalfiledialog.ui" line="137"/>
         <source>Others</source>
         <translation>Andere</translation>
     </message>
     <message>
-        <location filename="../ui/aditionalfiledialog.ui" line="165"/>
+        <location filename="../ui/additionalfiledialog.ui" line="165"/>
         <source>Special</source>
         <translation>Spezial</translation>
     </message>
     <message>
-        <location filename="../ui/aditionalfiledialog.ui" line="195"/>
+        <location filename="../ui/additionalfiledialog.ui" line="195"/>
         <source>UID Enabled</source>
         <translation>UID aktiviert</translation>
     </message>
     <message>
-        <location filename="../ui/aditionalfiledialog.ui" line="202"/>
+        <location filename="../ui/additionalfiledialog.ui" line="202"/>
         <source>GID Enabled</source>
         <translation>GID aktiviert</translation>
     </message>
     <message>
-        <location filename="../ui/aditionalfiledialog.ui" line="209"/>
+        <location filename="../ui/additionalfiledialog.ui" line="209"/>
         <source>Sticky</source>
         <translation>Sticky</translation>
     </message>
     <message>
-        <location filename="../ui/aditionalfiledialog.ui" line="219"/>
+        <location filename="../ui/additionalfiledialog.ui" line="219"/>
         <source>Owner</source>
         <translation>Eigentümer</translation>
     </message>
     <message>
-        <location filename="../ui/aditionalfiledialog.ui" line="226"/>
+        <location filename="../ui/additionalfiledialog.ui" line="226"/>
         <source>Owner of the target file</source>
         <translation>Eigentümer der Zieldatei</translation>
     </message>
     <message>
-        <location filename="../ui/aditionalfiledialog.ui" line="240"/>
+        <location filename="../ui/additionalfiledialog.ui" line="240"/>
         <source>Group of the target file</source>
         <translation>Gruppe der Zieldatei</translation>
     </message>
@@ -600,7 +600,8 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../ui/mainwindow.ui" line="155"/>
         <source>Runtime Dep.</source>
-        <translation>Laufzeit Abhängigkeiten (Runtime Dep).</translation>
+        <translation>Laufzeit Abhängigkeiten
+(Runtime Dep).</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="96"/>
@@ -990,19 +991,19 @@ Und dann können Sie hier ihre Priorität definieren.</translation>
     <message>
         <location filename="../ui/mainwindow.ui" line="1296"/>
         <location filename="../ui/mainwindow.ui" line="1299"/>
-        <source>Aditional Files Window</source>
+        <source>Additional Files Window</source>
         <translation>Zusätzliche Dateien Fenster</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="1360"/>
-        <source>Add your aditional files to package files directory (workspace/__package_name__/files/).
+        <source>Add your additional files to package files directory (workspace/__package_name__/files/).
 And than you can edit their properties in here</source>
         <translation>Fügen Sie weitere Dateien zum Paketverzeichnis (workspace / __ Paket __ / datei /) hinzu.
 Und hier können Sie ihre Eigenschaften bearbeiten</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="1364"/>
-        <source>Add your aditional files to package files directory (workspace/__package_name__/files/).\nAnd than you can edit their properties in here</source>
+        <source>Add your additional files to package files directory (workspace/__package_name__/files/).\nAnd than you can edit their properties in here</source>
         <translation>Fügen Sie Ihre zusätzlichen Dateien zum Paketdateien Verzeichnis (workspace / __ Paket __ / datei /). hinzu \ Und dann können Sie ihre Eigenschaften hier bearbeiten</translation>
     </message>
     <message>
@@ -1034,7 +1035,7 @@ Und hier können Sie ihre Eigenschaften bearbeiten</translation>
     <message>
         <location filename="../ui/mainwindow.ui" line="1317"/>
         <location filename="../ui/mainwindow.ui" line="1320"/>
-        <source>Opens aditional files directory (workspace/__package_name__/files/)</source>
+        <source>Opens additional files directory (workspace/__package_name__/files/)</source>
         <translation>Öffnet ein weiteres Dateiverzeichnis (Arbeitsbereich / __ Paket __ / datei /)</translation>
     </message>
     <message>
@@ -1129,7 +1130,7 @@ Und hier können Sie ihre Eigenschaften bearbeiten</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="1302"/>
-        <source>Aditionals</source>
+        <source>Additionals</source>
         <translation>Zusätzlich</translation>
     </message>
     <message>
@@ -1764,7 +1765,7 @@ Zeile:%2, Spalte:%3</translation>
     </message>
     <message>
         <location filename="../cpp/pisispbase.cpp" line="480"/>
-        <source>Wrong aditional_files atribute name : %1</source>
+        <source>Wrong additional_files atribute name : %1</source>
         <translation>Ungültige zusätzliche Dateien Attributnamen:%1</translation>
     </message>
     <message>

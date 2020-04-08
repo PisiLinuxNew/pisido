@@ -504,9 +504,9 @@ void MainWindow::apply_default_settings()
 {
     // set default settings, needed for first run
     settings.beginGroup( "configuration" );
-    QString action_api_page = settings.value("action_api_page", tr("http://wiki.pisilinux.org/tr/index.php?title=ActionsAPI")).toString();
+    QString action_api_page = settings.value("action_api_page", tr("https://pisilinux.github.io/developer.pisilinux.io/guides/packaging/actionsapi/index.html")).toString();
     //pspec api sayfası yenilenecek
-    QString pisi_spec = settings.value("pisi_spec", tr("http://svn.pardus.org.tr/uludag/trunk/pisi/pisi-spec.rng")).toString();
+    QString pisi_spec = settings.value("pisi_spec", tr("https://pisilinux.github.io/developer.pisilinux.io/guides/packaging/howto_create_pisi_packages.html")).toString();
     QString pisi_packaging_dir = settings.value("pisi_packaging_dir", QString("/var/pisi/")).toString();
 
     settings.setValue("action_api_page", action_api_page);

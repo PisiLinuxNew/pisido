@@ -47,7 +47,7 @@
 
 #define DEFAULT_PATCH_LEVEL 1
 #define PACKAGE_NAME_REFRESH_INTERVAL 2000
-#define COMBO_ACTIONS_IMPORT_INDEX 9
+#define COMBO_ACTIONS_IMPORT_INDEX 11
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -172,10 +172,12 @@ MainWindow::MainWindow(QWidget *parent) :
     actions_templates_defaults[2] = get_file_contents(":/files/actions_template_java.py");
     actions_templates_defaults[3] = get_file_contents(":/files/actions_template_kde4.py");
     actions_templates_defaults[4] = get_file_contents(":/files/actions_template_kde5.py");
-    actions_templates_defaults[5] = get_file_contents(":/files/actions_template_python.py");
-    actions_templates_defaults[6] = get_file_contents(":/files/actions_template_qt4.py");
-    actions_templates_defaults[7] = get_file_contents(":/files/actions_template_qt5.py");
-    actions_templates_defaults[8] = get_file_contents(":/files/actions_template_scons.py");
+    actions_templates_defaults[5] = get_file_contents(":/files/actions_template_meson.py");
+    actions_templates_defaults[6] = get_file_contents(":/files/actions_template_perl.py");
+    actions_templates_defaults[7] = get_file_contents(":/files/actions_template_python.py");
+    actions_templates_defaults[8] = get_file_contents(":/files/actions_template_qt4.py");
+    actions_templates_defaults[9] = get_file_contents(":/files/actions_template_qt5.py");
+    actions_templates_defaults[10] = get_file_contents(":/files/actions_template_scons.py");
     actions_templates_defaults[COMBO_ACTIONS_IMPORT_INDEX] = "";
     actions_templates = actions_templates_defaults;
     actions_editor->setText(actions_templates[ui->combo_actions_template->currentIndex()]);

@@ -4,14 +4,20 @@
 # Licensed under the GNU General Public License, version 3.
 # See the file https://www.gnu.org/licenses/gpl-3.0.txt
 
-from pisi.actionsapi import pythonmodules
+from pisi.actionsapi import perlmodules
 from pisi.actionsapi import pisitools
 
+def setup():
+    perlmodules.configure()
+
 def build():
-    pythonmodules.compile()
+    perlmodules.make()
+
+def check():
+    perlmodules.make("test")
 
 def install():
-    pythonmodules.install()
+    perlmodules.install()
 
     pisitools.dodoc("")
 

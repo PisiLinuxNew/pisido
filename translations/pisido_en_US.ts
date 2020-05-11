@@ -191,100 +191,100 @@
     </message>
 </context>
 <context>
-    <name>AditionalFileDialog</name>
+    <name>AdditionalFileDialog</name>
     <message>
-        <location filename="../ui/aditionalfiledialog.ui" line="14"/>
+        <location filename="../ui/additionalfiledialog.ui" line="14"/>
         <source>Edit AdditionalFile</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/aditionalfiledialog.ui" line="20"/>
+        <location filename="../ui/additionalfiledialog.ui" line="20"/>
         <source>Additional File</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/aditionalfiledialog.ui" line="26"/>
+        <location filename="../ui/additionalfiledialog.ui" line="26"/>
         <source>File</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/aditionalfiledialog.ui" line="40"/>
+        <location filename="../ui/additionalfiledialog.ui" line="40"/>
         <source>Target</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/aditionalfiledialog.ui" line="47"/>
+        <location filename="../ui/additionalfiledialog.ui" line="47"/>
         <source>Ex: /usr/share/__package_name__/, /usr/bin/xxx</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/aditionalfiledialog.ui" line="54"/>
+        <location filename="../ui/additionalfiledialog.ui" line="54"/>
         <source>Permission</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/aditionalfiledialog.ui" line="67"/>
+        <location filename="../ui/additionalfiledialog.ui" line="67"/>
         <source>Read</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/aditionalfiledialog.ui" line="74"/>
+        <location filename="../ui/additionalfiledialog.ui" line="74"/>
         <source>Write</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/aditionalfiledialog.ui" line="81"/>
+        <location filename="../ui/additionalfiledialog.ui" line="81"/>
         <source>Execute</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/aditionalfiledialog.ui" line="88"/>
+        <location filename="../ui/additionalfiledialog.ui" line="88"/>
         <source>User</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/aditionalfiledialog.ui" line="109"/>
-        <location filename="../ui/aditionalfiledialog.ui" line="233"/>
+        <location filename="../ui/additionalfiledialog.ui" line="109"/>
+        <location filename="../ui/additionalfiledialog.ui" line="233"/>
         <source>Group</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/aditionalfiledialog.ui" line="137"/>
+        <location filename="../ui/additionalfiledialog.ui" line="137"/>
         <source>Others</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/aditionalfiledialog.ui" line="165"/>
+        <location filename="../ui/additionalfiledialog.ui" line="165"/>
         <source>Special</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/aditionalfiledialog.ui" line="195"/>
+        <location filename="../ui/additionalfiledialog.ui" line="195"/>
         <source>UID Enabled</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/aditionalfiledialog.ui" line="202"/>
+        <location filename="../ui/additionalfiledialog.ui" line="202"/>
         <source>GID Enabled</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/aditionalfiledialog.ui" line="209"/>
+        <location filename="../ui/additionalfiledialog.ui" line="209"/>
         <source>Sticky</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/aditionalfiledialog.ui" line="219"/>
+        <location filename="../ui/additionalfiledialog.ui" line="219"/>
         <source>Owner</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/aditionalfiledialog.ui" line="226"/>
+        <location filename="../ui/additionalfiledialog.ui" line="226"/>
         <source>Owner of the target file</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/aditionalfiledialog.ui" line="240"/>
+        <location filename="../ui/additionalfiledialog.ui" line="240"/>
         <source>Group of the target file</source>
         <translation></translation>
     </message>
@@ -981,18 +981,18 @@ And than you can define priority in here.</source>
     <message>
         <location filename="../ui/mainwindow.ui" line="1296"/>
         <location filename="../ui/mainwindow.ui" line="1299"/>
-        <source>Aditional Files Window</source>
+        <source>Additional Files Window</source>
         <translation></translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="1360"/>
-        <source>Add your aditional files to package files directory (workspace/__package_name__/files/).
+        <source>Add your additional files to package files directory (workspace/__package_name__/files/).
 And than you can edit their properties in here</source>
         <translation></translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="1364"/>
-        <source>Add your aditional files to package files directory (workspace/__package_name__/files/).\nAnd than you can edit their properties in here</source>
+        <source>Add your additional files to package files directory (workspace/__package_name__/files/).\nAnd than you can edit their properties in here</source>
         <translation></translation>
     </message>
     <message>
@@ -1024,7 +1024,7 @@ And than you can edit their properties in here</source>
     <message>
         <location filename="../ui/mainwindow.ui" line="1317"/>
         <location filename="../ui/mainwindow.ui" line="1320"/>
-        <source>Opens aditional files directory (workspace/__package_name__/files/)</source>
+        <source>Opens additional files directory (workspace/__package_name__/files/)</source>
         <translation></translation>
     </message>
     <message>
@@ -1119,7 +1119,7 @@ And than you can edit their properties in here</source>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="1302"/>
-        <source>Aditionals</source>
+        <source>Additionals</source>
         <translation></translation>
     </message>
     <message>
@@ -1751,7 +1751,7 @@ Line:%2, Column:%3</source>
     </message>
     <message>
         <location filename="../cpp/pisispbase.cpp" line="480"/>
-        <source>Wrong aditional_files atribute name : %1</source>
+        <source>Wrong additional_files atribute name : %1</source>
         <translation></translation>
     </message>
     <message>

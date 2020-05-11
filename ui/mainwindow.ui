@@ -763,6 +763,16 @@ p, li { white-space: pre-wrap; }
          </item>
          <item>
           <property name="text">
+           <string>Meson</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Perl</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
            <string notr="true">Python</string>
           </property>
          </item>
@@ -1390,37 +1400,37 @@ And than you can define priority in here.</string>
     </layout>
    </widget>
   </widget>
-  <widget class="QDockWidget" name="dw_aditional_files">
+  <widget class="QDockWidget" name="dw_additional_files">
    <property name="windowIcon">
     <iconset resource="../resources/pisido.qrc">
-     <normaloff>:/images/aditional-files.png</normaloff>:/images/aditional-files.png</iconset>
+     <normaloff>:/images/additional-files.png</normaloff>:/images/additional-files.png</iconset>
    </property>
    <property name="toolTip">
-    <string>Aditional Files Window</string>
+    <string>Additional Files Window</string>
    </property>
    <property name="statusTip">
-    <string>Aditional Files Window</string>
+    <string>Additional Files Window</string>
    </property>
    <property name="windowTitle">
-    <string>Aditio&amp;nals</string>
+    <string>Additio&amp;nals</string>
    </property>
    <attribute name="dockWidgetArea">
     <number>8</number>
    </attribute>
-   <widget class="QWidget" name="dw_aditional_files_content">
+   <widget class="QWidget" name="dw_additional_files_content">
     <layout class="QGridLayout" name="gridLayout_5">
      <item row="0" column="0">
       <layout class="QHBoxLayout" name="horizontalLayout_10">
        <item>
-        <widget class="QToolButton" name="tb_open_aditional_files_dir">
+        <widget class="QToolButton" name="tb_open_additional_files_dir">
          <property name="enabled">
           <bool>false</bool>
          </property>
          <property name="toolTip">
-          <string>Opens aditional files directory (workspace/__package_name__/files/)</string>
+          <string>Opens additional files directory (workspace/__package_name__/files/)</string>
          </property>
          <property name="statusTip">
-          <string>Opens aditional files directory (workspace/__package_name__/files/)</string>
+          <string>Opens additional files directory (workspace/__package_name__/files/)</string>
          </property>
          <property name="text">
           <string/>
@@ -1432,14 +1442,14 @@ And than you can define priority in here.</string>
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="le_package_aditionals_dir">
+        <widget class="QLineEdit" name="le_package_additionals_dir">
          <property name="enabled">
           <bool>false</bool>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QToolButton" name="tb_refresh_tableW_aditional_files">
+        <widget class="QToolButton" name="tb_refresh_tableW_additional_files">
          <property name="toolTip">
           <string>Please refresh after a successful build !</string>
          </property>
@@ -1458,13 +1468,13 @@ And than you can define priority in here.</string>
       </layout>
      </item>
      <item row="1" column="0" rowspan="2">
-      <widget class="QTableWidget" name="tableW_aditional_files">
+      <widget class="QTableWidget" name="tableW_additional_files">
        <property name="toolTip">
-        <string>Add your aditional files to package files directory (workspace/__package_name__/files/).
+        <string>Add your additional files to package files directory (workspace/__package_name__/files/).
 And than you can edit their properties in here</string>
        </property>
        <property name="statusTip">
-        <string>Add your aditional files to package files directory (workspace/__package_name__/files/).\nAnd than you can edit their properties in here</string>
+        <string>Add your additional files to package files directory (workspace/__package_name__/files/).\nAnd than you can edit their properties in here</string>
        </property>
        <property name="alternatingRowColors">
         <bool>true</bool>
@@ -1518,7 +1528,7 @@ And than you can edit their properties in here</string>
       </widget>
      </item>
      <item row="1" column="1">
-      <widget class="QToolButton" name="tb_edit_aditional_files">
+      <widget class="QToolButton" name="tb_edit_additional_files">
        <property name="toolTip">
         <string>Edits selected file</string>
        </property>
@@ -1935,9 +1945,9 @@ And than you can edit their properties in here</string>
   <tabstop>tb_patch_up</tabstop>
   <tabstop>tb_patch_down</tabstop>
   <tabstop>tb_open_patches_dir</tabstop>
-  <tabstop>tableW_aditional_files</tabstop>
-  <tabstop>tb_edit_aditional_files</tabstop>
-  <tabstop>tb_open_aditional_files_dir</tabstop>
+  <tabstop>tableW_additional_files</tabstop>
+  <tabstop>tb_edit_additional_files</tabstop>
+  <tabstop>tb_open_additional_files_dir</tabstop>
   <tabstop>combo_build_up_to</tabstop>
   <tabstop>tb_build_up_to</tabstop>
   <tabstop>combo_build_only</tabstop>

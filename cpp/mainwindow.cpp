@@ -35,7 +35,7 @@
 #include "aboutdialog.h"
 #include "addinstallfilelabeldialog.h"
 #include "addupdatedialog.h"
-#include "aditionalfiledialog.h"
+#include "additionalfiledialog.h"
 #include "archiveselectiondialog.h"
 #include "configurationdialog.h"
 #include "directorymodel.h"
@@ -47,7 +47,7 @@
 
 #define DEFAULT_PATCH_LEVEL 1
 #define PACKAGE_NAME_REFRESH_INTERVAL 2000
-#define COMBO_ACTIONS_IMPORT_INDEX 9
+#define COMBO_ACTIONS_IMPORT_INDEX 11
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -75,14 +75,14 @@ MainWindow::MainWindow(QWidget *parent) :
     addDockWidget(Qt::RightDockWidgetArea, ui->dw_history);
     // tabify for first run
     tabifyDockWidget(ui->dw_actions, ui->dw_install_files);
-    tabifyDockWidget(ui->dw_install_files, ui->dw_aditional_files);
-    tabifyDockWidget(ui->dw_aditional_files, ui->dw_patches);
+    tabifyDockWidget(ui->dw_install_files, ui->dw_additional_files);
+    tabifyDockWidget(ui->dw_additional_files, ui->dw_patches);
     tabifyDockWidget(ui->dw_patches, ui->dw_history);
     ui->dw_actions->raise();
     // fill view menu
     QAction * a_dw_actions = ui->dw_actions->toggleViewAction();
     QAction * a_dw_install_files = ui->dw_install_files->toggleViewAction();
-    QAction * a_dw_aditional_files = ui->dw_aditional_files->toggleViewAction();
+    QAction * a_dw_additional_files = ui->dw_additional_files->toggleViewAction();
     QAction * a_dw_patches = ui->dw_patches->toggleViewAction();
     QAction * a_dw_history = ui->dw_history->toggleViewAction();
     QAction * a_dw_build = ui->dw_build->toggleViewAction();
@@ -93,7 +93,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     a_dw_actions->setIcon(QIcon(":/images/actions.png"));
     a_dw_install_files->setIcon(QIcon(":/images/install-files.png"));
-    a_dw_aditional_files->setIcon(QIcon(":/images/aditional-files.png"));
+    a_dw_additional_files->setIcon(QIcon(":/images/additional-files.png"));
     a_dw_patches->setIcon(QIcon(":/images/patches.png"));
     a_dw_history->setIcon(QIcon(":/images/history.png"));
     a_dw_build->setIcon(QIcon(":/images/build.png"));
@@ -102,7 +102,7 @@ MainWindow::MainWindow(QWidget *parent) :
     a_tBar_help->setIcon(QIcon(":/images/help.png"));
     a_dw_actions->setStatusTip(ui->dw_actions->toolTip());
     a_dw_install_files->setStatusTip(ui->dw_install_files->toolTip());
-    a_dw_aditional_files->setStatusTip(ui->dw_aditional_files->toolTip());
+    a_dw_additional_files->setStatusTip(ui->dw_additional_files->toolTip());
     a_dw_patches->setStatusTip(ui->dw_patches->toolTip());
     a_dw_history->setStatusTip(ui->dw_history->toolTip());
     a_dw_build->setStatusTip(ui->dw_build->toolTip());
@@ -112,7 +112,7 @@ MainWindow::MainWindow(QWidget *parent) :
     a_tBar_help->setStatusTip(tr("Show or hide %1").arg(ui->tBar_help->windowTitle()));
     ui->menu_View->addAction(a_dw_actions);
     ui->menu_View->addAction(a_dw_install_files);
-    ui->menu_View->addAction(a_dw_aditional_files);
+    ui->menu_View->addAction(a_dw_additional_files);
     ui->menu_View->addAction(a_dw_patches);
     ui->menu_View->addAction(a_dw_history);
     ui->menu_View->addAction(a_dw_build);
@@ -125,7 +125,7 @@ MainWindow::MainWindow(QWidget *parent) :
     // fill view tool bar
     ui->tBar_view->addAction(a_dw_actions);
     ui->tBar_view->addAction(a_dw_install_files);
-    ui->tBar_view->addAction(a_dw_aditional_files);
+    ui->tBar_view->addAction(a_dw_additional_files);
     ui->tBar_view->addAction(a_dw_patches);
     ui->tBar_view->addAction(a_dw_history);
     ui->tBar_view->addAction(a_dw_build);
@@ -172,10 +172,12 @@ MainWindow::MainWindow(QWidget *parent) :
     actions_templates_defaults[2] = get_file_contents(":/files/actions_template_java.py");
     actions_templates_defaults[3] = get_file_contents(":/files/actions_template_kde4.py");
     actions_templates_defaults[4] = get_file_contents(":/files/actions_template_kde5.py");
-    actions_templates_defaults[5] = get_file_contents(":/files/actions_template_python.py");
-    actions_templates_defaults[6] = get_file_contents(":/files/actions_template_qt4.py");
-    actions_templates_defaults[7] = get_file_contents(":/files/actions_template_qt5.py");
-    actions_templates_defaults[8] = get_file_contents(":/files/actions_template_scons.py");
+    actions_templates_defaults[5] = get_file_contents(":/files/actions_template_meson.py");
+    actions_templates_defaults[6] = get_file_contents(":/files/actions_template_perl.py");
+    actions_templates_defaults[7] = get_file_contents(":/files/actions_template_python.py");
+    actions_templates_defaults[8] = get_file_contents(":/files/actions_template_qt4.py");
+    actions_templates_defaults[9] = get_file_contents(":/files/actions_template_qt5.py");
+    actions_templates_defaults[10] = get_file_contents(":/files/actions_template_scons.py");
     actions_templates_defaults[COMBO_ACTIONS_IMPORT_INDEX] = "";
     actions_templates = actions_templates_defaults;
     actions_editor->setText(actions_templates[ui->combo_actions_template->currentIndex()]);
@@ -504,9 +506,9 @@ void MainWindow::apply_default_settings()
 {
     // set default settings, needed for first run
     settings.beginGroup( "configuration" );
-    QString action_api_page = settings.value("action_api_page", tr("http://wiki.pisilinux.org/tr/index.php?title=ActionsAPI")).toString();
+    QString action_api_page = settings.value("action_api_page", tr("https://pisilinux.github.io/developer.pisilinux.io/guides/packaging/actionsapi/index.html")).toString();
     //pspec api sayfası yenilenecek
-    QString pisi_spec = settings.value("pisi_spec", tr("http://svn.pardus.org.tr/uludag/trunk/pisi/pisi-spec.rng")).toString();
+    QString pisi_spec = settings.value("pisi_spec", tr("https://pisilinux.github.io/developer.pisilinux.io/guides/packaging/howto_create_pisi_packages.html")).toString();
     QString pisi_packaging_dir = settings.value("pisi_packaging_dir", QString("/var/pisi/")).toString();
 
     settings.setValue("action_api_page", action_api_page);
@@ -560,7 +562,7 @@ void MainWindow::on_action_Reset_Fields_triggered()
 //      package_name, homepage, licenses, is_a_s, part_of, summary,
 //      description, build_dependency, runtime_dependency
 //    These will be cleared after le_package_name clear :
-//      package_files_watcher, aditional_files, patches
+//      package_files_watcher, additional_files, patches
 
     clear_archive_widgets();
     clear_translation_widgets();
@@ -699,11 +701,11 @@ void MainWindow::on_le_package_name_textChanged(const QString &text)
 
     if(package_files_dir.isRoot()){
         ui->le_package_patches_dir->setText("");
-        ui->le_package_aditionals_dir->setText("");
+        ui->le_package_additionals_dir->setText("");
     }
     else{
         ui->le_package_patches_dir->setText(package_files_dir.absolutePath());
-        ui->le_package_aditionals_dir->setText(package_files_dir.absolutePath());
+        ui->le_package_additionals_dir->setText(package_files_dir.absolutePath());
     }
 
     if(package_install_dir.isRoot()){
@@ -793,13 +795,13 @@ void MainWindow::update_package_files()
 {
     if( ! package_files_dir.isRoot() && package_files_dir.exists())
     {
-        ui->tb_open_aditional_files_dir->setEnabled(true);
+        ui->tb_open_additional_files_dir->setEnabled(true);
         ui->tb_open_patches_dir->setEnabled(true);
 
         clear_tableW_patches();
         temp_patches.clear();
-        clear_tableW_aditional_files();
-        temp_aditional_files.clear();
+        clear_tableW_additional_files();
+        temp_additional_files.clear();
 
         package_files_process(package_files_dir.absolutePath());
 
@@ -817,14 +819,14 @@ void MainWindow::update_package_files()
         temp_patches.clear();
         fill_tableW_patches();
 
-        aditional_files = temp_aditional_files;
-        temp_aditional_files.clear();
-        fill_tableW_aditional_files();
+        additional_files = temp_additional_files;
+        temp_additional_files.clear();
+        fill_tableW_additional_files();
     }
     else{
         clear_tableW_patches();
-        clear_tableW_aditional_files();
-        ui->tb_open_aditional_files_dir->setEnabled(false);
+        clear_tableW_additional_files();
+        ui->tb_open_additional_files_dir->setEnabled(false);
         ui->tb_open_patches_dir->setEnabled(false);
     }
 }
@@ -846,19 +848,19 @@ void MainWindow::fill_tableW_patches()
     ui->tableW_patches->sortByColumn(0, Qt::AscendingOrder);
 }
 
-/** aditional_files must filled before call ! */
-void MainWindow::fill_tableW_aditional_files()
+/** additional_files must filled before call ! */
+void MainWindow::fill_tableW_additional_files()
 {
-    QStringList a_files_keys = aditional_files.keys();
+    QStringList a_files_keys = additional_files.keys();
     int a_file_index = 0;
     foreach (QString a_file, a_files_keys) {
-        QMap<PisiSPBase::AFileAttr,QString> attr = aditional_files.value(a_file);
-        ui->tableW_aditional_files->insertRow(a_file_index);
-        ui->tableW_aditional_files->setItem(a_file_index, 0, new QTableWidgetItem(a_file));
-        ui->tableW_aditional_files->setItem(a_file_index, 1, new QTableWidgetItem(attr.value(PisiSPBase::TARGET)));
-        ui->tableW_aditional_files->setItem(a_file_index, 2, new QTableWidgetItem(attr.value(PisiSPBase::PERMISSION)));
-        ui->tableW_aditional_files->setItem(a_file_index, 3, new QTableWidgetItem(attr.value(PisiSPBase::OWNER)));
-        ui->tableW_aditional_files->setItem(a_file_index, 4, new QTableWidgetItem(attr.value(PisiSPBase::GROUP)));
+        QMap<PisiSPBase::AFileAttr,QString> attr = additional_files.value(a_file);
+        ui->tableW_additional_files->insertRow(a_file_index);
+        ui->tableW_additional_files->setItem(a_file_index, 0, new QTableWidgetItem(a_file));
+        ui->tableW_additional_files->setItem(a_file_index, 1, new QTableWidgetItem(attr.value(PisiSPBase::TARGET)));
+        ui->tableW_additional_files->setItem(a_file_index, 2, new QTableWidgetItem(attr.value(PisiSPBase::PERMISSION)));
+        ui->tableW_additional_files->setItem(a_file_index, 3, new QTableWidgetItem(attr.value(PisiSPBase::OWNER)));
+        ui->tableW_additional_files->setItem(a_file_index, 4, new QTableWidgetItem(attr.value(PisiSPBase::GROUP)));
         a_file_index++;
     }
 }
@@ -884,8 +886,8 @@ void MainWindow::package_files_process(const QString & dir)
             }
         }
         else{
-            if(aditional_files.contains(relative_file_path)){
-                temp_aditional_files.insert(relative_file_path, aditional_files.value(relative_file_path));
+            if(additional_files.contains(relative_file_path)){
+                temp_additional_files.insert(relative_file_path, additional_files.value(relative_file_path));
             }
             else{
                 QMap<PisiSPBase::AFileAttr,QString> attr;
@@ -893,7 +895,7 @@ void MainWindow::package_files_process(const QString & dir)
                 attr.insert(PisiSPBase::PERMISSION, QString("0644"));
                 attr.insert(PisiSPBase::OWNER, QString("root"));
                 attr.insert(PisiSPBase::GROUP, QString("root"));
-                temp_aditional_files.insert(relative_file_path, attr);
+                temp_additional_files.insert(relative_file_path, attr);
             }
         }
     }
@@ -918,7 +920,7 @@ void MainWindow::on_tb_refresh_tableW_patches_clicked()
     update_package_files();
 }
 
-void MainWindow::on_tb_refresh_tableW_aditional_files_clicked()
+void MainWindow::on_tb_refresh_tableW_additional_files_clicked()
 {
     update_package_files();
 }
@@ -970,23 +972,23 @@ void MainWindow::clear_tableW_patches()
     }
 }
 
-void MainWindow::clear_tableW_aditional_files()
+void MainWindow::clear_tableW_additional_files()
 {
-    int row_count = ui->tableW_aditional_files->rowCount();
+    int row_count = ui->tableW_additional_files->rowCount();
     for (int i = 0; i < row_count; ++i) {
-        ui->tableW_aditional_files->removeRow(0);
+        ui->tableW_additional_files->removeRow(0);
     }
 }
 
-void MainWindow::on_tb_edit_aditional_files_clicked()
+void MainWindow::on_tb_edit_additional_files_clicked()
 {
-    QModelIndexList list = ui->tableW_aditional_files->selectionModel()->selectedRows(0);
+    QModelIndexList list = ui->tableW_additional_files->selectionModel()->selectedRows(0);
     if(list.count() != 1 )
         return;
-    QString a_file = ui->tableW_aditional_files->item(list.first().row(), 0)->data(Qt::DisplayRole).toString();
-    AditionalFileDialog afd(this, a_file, aditional_files.value(a_file));
+    QString a_file = ui->tableW_additional_files->item(list.first().row(), 0)->data(Qt::DisplayRole).toString();
+    AdditionalFileDialog afd(this, a_file, additional_files.value(a_file));
     if( afd.exec() == QDialog::Accepted ){
-        aditional_files[a_file] = afd.get_attr();
+        additional_files[a_file] = afd.get_attr();
         update_package_files();
     }
 }
@@ -1051,10 +1053,10 @@ void MainWindow::on_tableW_files_itemSelectionChanged()
 
 void MainWindow::on_tb_open_patches_dir_clicked()
 {
-    on_tb_open_aditional_files_dir_clicked();
+    on_tb_open_additional_files_dir_clicked();
 }
 
-void MainWindow::on_tb_open_aditional_files_dir_clicked()
+void MainWindow::on_tb_open_additional_files_dir_clicked()
 {
     if( ! package_files_dir.isRoot() && package_files_dir.exists())
         QDesktopServices::openUrl(QUrl::fromLocalFile(package_files_dir.absolutePath()));
@@ -1517,14 +1519,14 @@ void MainWindow::package_to_gui(int key) throw (QString)
     runtime_dependency = package.get_runtime_dependencies_as_stringlist().join(", ");
     ui->le_runtime_dependency->setText(runtime_dependency);
     files = package.get_files_as_string_type();
-    aditional_files.clear();
+    additional_files.clear();
     QList<QString> files_keys = files.keys();
     foreach (QString path, files_keys) {
         QMap<QString, bool> attr = files.value(path);
         append_file(path, attr.keys().first(), attr.value(attr.keys().first()));
     }
 
-    aditional_files = package.get_aditional_files();
+    additional_files = package.get_additional_files();
     update_package_files();
 
     foreach(TranslationWidget*t_w, translation_widgets){
@@ -1614,10 +1616,10 @@ void MainWindow::save_package(int key){
     //if(package.get_files_as_string_type().isEmpty())
         package.set_files(files);
     package.set_psummary(ui->le_summary->text());
-    temp_aditional_files.clear();
-    QList<QString> a_f_list = aditional_files.keys();
+    temp_additional_files.clear();
+    QList<QString> a_f_list = additional_files.keys();
     foreach (QString a_f, a_f_list) {
-        QMap<PisiSPBase::AFileAttr,QString> a_f_attr = aditional_files.value(a_f);
+        QMap<PisiSPBase::AFileAttr,QString> a_f_attr = additional_files.value(a_f);
         QList<PisiSPBase::AFileAttr> a_f_attr_keys = a_f_attr.keys();
         foreach (PisiSPBase::AFileAttr a, a_f_attr_keys) {
             if(a == PisiSPBase::TARGET){
@@ -1626,10 +1628,10 @@ void MainWindow::save_package(int key){
                 a_f_attr[a] = a_f_attr[a].replace("__summary__", summary);
             }
         }
-        temp_aditional_files[a_f] = a_f_attr;
+        temp_additional_files[a_f] = a_f_attr;
     }
-    package.set_aditional_files(temp_aditional_files);
-    temp_aditional_files.clear();
+    package.set_additional_files(temp_additional_files);
+    temp_additional_files.clear();
     pisi.set_package(key,package);
 }
 

@@ -18,7 +18,7 @@
         <file alias="history.png">images/history.png</file>
         <file alias="actions.png">images/actions.png</file>
         <file alias="install-files.png">images/install-files.png</file>
-        <file alias="aditional-files.png">images/aditional-files.png</file>
+        <file alias="additional-files.png">images/additional-files.png</file>
         <file alias="patches.png">images/patches.png</file>
         <file alias="toolbar.png">images/toolbar.png</file>
         <file alias="exit.png">images/exit.png</file>
@@ -50,12 +50,14 @@
         <file alias="part_of">files/part_of</file>
         <file alias="actions_template_auto.py">files/actions_template_auto.py</file>
         <file alias="actions_template_cmake.py">files/actions_template_cmake.py</file>
+        <file alias="actions_template_java.py">files/actions_template_java.py</file>
         <file alias="actions_template_kde4.py">files/actions_template_kde4.py</file>
+        <file alias="actions_template_kde5.py">files/actions_template_kde5.py</file>
+        <file alias="actions_template_meson.py">files/actions_template_meson.py</file>
+        <file alias="actions_template_perl.py">files/actions_template_perl.py</file>
         <file alias="actions_template_python.py">files/actions_template_python.py</file>
         <file alias="actions_template_qt4.py">files/actions_template_qt4.py</file>
-        <file alias="actions_template_scons.py">files/actions_template_scons.py</file>
-        <file alias="actions_template_java.py">files/actions_template_java.py</file>
         <file alias="actions_template_qt5.py">files/actions_template_qt5.py</file>
-        <file alias="actions_template_kde5.py">files/actions_template_kde5.py</file>
+        <file alias="actions_template_scons.py">files/actions_template_scons.py</file>
     </qresource>
 </RCC>

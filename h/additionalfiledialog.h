@@ -10,16 +10,16 @@
 #include "pisispbase.h"
 
 namespace Ui {
-    class AditionalFileDialog;
+    class AdditionalFileDialog;
 }
 
-class AditionalFileDialog : public QDialog
+class AdditionalFileDialog : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit AditionalFileDialog(QWidget * parent, QString a_file, QMap<PisiSPBase::AFileAttr,QString> attr);
-    ~AditionalFileDialog();
+    explicit AdditionalFileDialog(QWidget * parent, QString a_file, QMap<PisiSPBase::AFileAttr,QString> attr);
+    ~AdditionalFileDialog();
 
     QMap<PisiSPBase::AFileAttr,QString> get_attr();
 
@@ -27,7 +27,7 @@ public slots:
     void dialog_accepted();
 
 private:
-    Ui::AditionalFileDialog *ui;
+    Ui::AdditionalFileDialog *ui;
     QString a_file;
     QMap<PisiSPBase::AFileAttr,QString> attr;
 

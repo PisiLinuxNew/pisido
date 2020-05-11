@@ -42,7 +42,7 @@ public:
     QStringList get_is_a_s() const;
     QStringList get_build_dependencies_as_stringlist();
     QMap<QString, QMap<VRTFAttr,QString> > get_build_dependencies() const;
-    QMap<QString, QMap<AFileAttr,QString> > get_aditional_files() const;
+    QMap<QString, QMap<AFileAttr,QString> > get_additional_files() const;
 
     void set_name(QString name) throw(QString);
     void set_summary(QString summary) throw(QString);
@@ -52,7 +52,7 @@ public:
     void set_is_a_s(QStringList is_a_s);
     void set_build_dependencies(QMap<QString, QMap<VRTFAttr,QString> > build_dependencies);
     void set_build_dependencies(QString build_dependency_string);
-    void set_aditional_files(QMap<QString, QMap<AFileAttr,QString> > aditional_files);
+    void set_additional_files(QMap<QString, QMap<AFileAttr,QString> > additional_files);
 
     bool operator ==(const PisiSPBase & other) const;
     bool operator !=(const PisiSPBase & other) const;
@@ -74,11 +74,11 @@ protected:
     VRTFAttr get_dependency_attribute(QString attr_name, bool abbreviation = false) throw(QString);
     QString get_dependency_attribute(VRTFAttr attr, bool abbreviation = false);
 
-    QMap<QString, QMap<AFileAttr,QString> > get_aditional_file(QDomElement elm) throw(QString);
-    void set_aditional_file(QDomElement root, QMap<QString, QMap<AFileAttr,QString> > a_files);
+    QMap<QString, QMap<AFileAttr,QString> > get_additional_file(QDomElement elm) throw(QString);
+    void set_additional_file(QDomElement root, QMap<QString, QMap<AFileAttr,QString> > a_files);
 
-    AFileAttr get_aditional_file_attribute(QString attr_name) throw(QString);
-    QString get_aditional_file_attribute(AFileAttr attr);
+    AFileAttr get_additional_file_attribute(QString attr_name) throw(QString);
+    QString get_additional_file_attribute(AFileAttr attr);
 
     virtual QStringList get_dependency_list(QMap<QString, QMap<VRTFAttr,QString> > dependencies);
     virtual QMap<QString, QMap<VRTFAttr,QString> > get_dependency_list(QString dependency);
@@ -96,7 +96,7 @@ private:
     // dependency, {(versionFrom,xxxx),(versionTo,xxxx),...,(release,xxxx)}
     QMap<QString, QMap<VRTFAttr,QString> > build_dependencies;
     // file, {(target:xxxx),(permission:xxx),(owner:xxx),(group:xxx)}
-    QMap<QString, QMap<AFileAttr,QString> > aditional_files;
+    QMap<QString, QMap<AFileAttr,QString> > additional_files;
 };
 
 #endif // PISISPBASE_H

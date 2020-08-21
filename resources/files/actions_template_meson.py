@@ -11,7 +11,7 @@ def setup():
     mesontools.configure()
 
 def build():
-    mesontools.make()
+    mesontools.build()
 
 def install():
     mesontools.install()

@@ -47,7 +47,7 @@
 
 #define DEFAULT_PATCH_LEVEL 1
 #define PACKAGE_NAME_REFRESH_INTERVAL 2000
-#define COMBO_ACTIONS_IMPORT_INDEX 11
+#define COMBO_ACTIONS_IMPORT_INDEX 9
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -170,14 +170,12 @@ MainWindow::MainWindow(QWidget *parent) :
     actions_templates_defaults[0] = get_file_contents(":/files/actions_template_auto.py");
     actions_templates_defaults[1] = get_file_contents(":/files/actions_template_cmake.py");
     actions_templates_defaults[2] = get_file_contents(":/files/actions_template_java.py");
-    actions_templates_defaults[3] = get_file_contents(":/files/actions_template_kde4.py");
-    actions_templates_defaults[4] = get_file_contents(":/files/actions_template_kde5.py");
-    actions_templates_defaults[5] = get_file_contents(":/files/actions_template_meson.py");
-    actions_templates_defaults[6] = get_file_contents(":/files/actions_template_perl.py");
-    actions_templates_defaults[7] = get_file_contents(":/files/actions_template_python.py");
-    actions_templates_defaults[8] = get_file_contents(":/files/actions_template_qt4.py");
-    actions_templates_defaults[9] = get_file_contents(":/files/actions_template_qt5.py");
-    actions_templates_defaults[10] = get_file_contents(":/files/actions_template_scons.py");
+    actions_templates_defaults[3] = get_file_contents(":/files/actions_template_kde5.py");
+    actions_templates_defaults[4] = get_file_contents(":/files/actions_template_meson.py");
+    actions_templates_defaults[5] = get_file_contents(":/files/actions_template_perl.py");
+    actions_templates_defaults[6] = get_file_contents(":/files/actions_template_python.py");
+    actions_templates_defaults[7] = get_file_contents(":/files/actions_template_qt5.py");
+    actions_templates_defaults[8] = get_file_contents(":/files/actions_template_scons.py");
     actions_templates_defaults[COMBO_ACTIONS_IMPORT_INDEX] = "";
     actions_templates = actions_templates_defaults;
     actions_editor->setText(actions_templates[ui->combo_actions_template->currentIndex()]);
@@ -1976,12 +1974,12 @@ void MainWindow::on_action_Run_Docker_triggered(){
     ui->action_Clear_Docker->setEnabled(true);
     ui->tb_docker_container->setEnabled(true);
     qDebug() << "outputdir: "+ output_dir.absolutePath();
-    QString command = QString(/*"docker pull ertugerata/pisi-chroot-farm && " +*/
+    QString command = QString(/*"docker pull safaariman/pisi-chroot && " +*/
                               QString("docker run -v %1:/git ").arg(workspace_dir.absolutePath()) +
                               QString("-v %1:/root ").arg(output_dir.absolutePath()) +
                               QString("-v %1:/var/cache/pisi/archives ").arg(archives_dir.absolutePath()) +
                               QString("-v %1:/var/cache/pisi/packages ").arg(packages_dir.absolutePath()) +
-                              "-itd ertugerata/pisi-chroot-farm bash \n");
+                              "-itd safaariman/pisi-chroot bash \n");
 
     w_terminal->sendText(command);
 
@@ -2005,7 +2003,7 @@ void MainWindow::on_action_Update_Docker_triggered(){
     }
     ui->tb_docker_container->setText(trUtf8("Containers"));
 
-    QString command = QString("docker pull ertugerata/pisi-chroot-farm \n");
+    QString command = QString("docker pull safaariman/pisi-chroot \n");
     w_terminal->sendText(command);
 
     //find_docker_containers();

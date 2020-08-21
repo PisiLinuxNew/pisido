@@ -13,3 +13,5 @@ def build():
 def install():
     javamodules.install()
 
+    pisitools.dodoc("")
+

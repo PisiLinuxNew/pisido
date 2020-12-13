@@ -1979,7 +1979,7 @@ void MainWindow::on_action_Run_Docker_triggered(){
                               QString("-v %1:/root ").arg(output_dir.absolutePath()) +
                               QString("-v %1:/var/cache/pisi/archives ").arg(archives_dir.absolutePath()) +
                               QString("-v %1:/var/cache/pisi/packages ").arg(packages_dir.absolutePath()) +
-                              "-itd safaariman/pisi-chroot bash \n");
+                              "-itd safaariman/pisi-chroot:stable bash \n");
 
     w_terminal->sendText(command);
 
@@ -2003,7 +2003,7 @@ void MainWindow::on_action_Update_Docker_triggered(){
     }
     ui->tb_docker_container->setText(trUtf8("Containers"));
 
-    QString command = QString("docker pull safaariman/pisi-chroot \n");
+    QString command = QString("docker pull safaariman/pisi-chroot:stable \n");
     w_terminal->sendText(command);
 
     //find_docker_containers();

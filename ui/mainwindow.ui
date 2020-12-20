@@ -753,11 +753,6 @@ p, li { white-space: pre-wrap; }
          </item>
          <item>
           <property name="text">
-           <string notr="true">KDE4</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
            <string>KDE5</string>
           </property>
          </item>
@@ -774,11 +769,6 @@ p, li { white-space: pre-wrap; }
          <item>
           <property name="text">
            <string notr="true">Python</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string notr="true">Qt4</string>
           </property>
          </item>
          <item>

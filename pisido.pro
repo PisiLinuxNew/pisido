@@ -21,7 +21,7 @@ TARGET = pisido
 TEMPLATE = app
 LANGUAGE = C++
 
-VERSION = 2.3.5
+VERSION = 2.3.6
 DEFINES += PISIDO_VERSION=\\\"$$VERSION\\\"
 INCLUDEPATH += ./h
 
@@ -163,12 +163,10 @@ OTHER_FILES += \
     resources/files/actions_template_auto.py \
     resources/files/actions_template_cmake.py \
     resources/files/actions_template_java.py \
-    resources/files/actions_template_kde4.py \
     resources/files/actions_template_kde5.py \
     resources/files/actions_template_meson.py \
     resources/files/actions_template_perl.py \
     resources/files/actions_template_python.py \
-    resources/files/actions_template_qt4.py \
     resources/files/actions_template_qt5.py \
     resources/files/actions_template_scons.py \
 

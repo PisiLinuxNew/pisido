@@ -1,11 +1,11 @@
 [Desktop Entry]
 Categories=Development;IDE;
 Comment[tr]=Pisi paketi yapıcı
-Comment=Pisi paketi yapıcı
+Comment=Pisi package maker
 Encoding=UTF-8
 Exec=kdesu -u root pisido || gksu -u root pisido
 GenericName[tr]=Pisi paketi yapıcı
-GenericName=Pisi paketi yapıcı
+GenericName=Pisi package maker
 Icon=pisido.png
 MimeType=
 Name[tr]=PiSiDo

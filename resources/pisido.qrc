@@ -51,12 +51,10 @@
         <file alias="actions_template_auto.py">files/actions_template_auto.py</file>
         <file alias="actions_template_cmake.py">files/actions_template_cmake.py</file>
         <file alias="actions_template_java.py">files/actions_template_java.py</file>
-        <file alias="actions_template_kde4.py">files/actions_template_kde4.py</file>
         <file alias="actions_template_kde5.py">files/actions_template_kde5.py</file>
         <file alias="actions_template_meson.py">files/actions_template_meson.py</file>
         <file alias="actions_template_perl.py">files/actions_template_perl.py</file>
         <file alias="actions_template_python.py">files/actions_template_python.py</file>
-        <file alias="actions_template_qt4.py">files/actions_template_qt4.py</file>
         <file alias="actions_template_qt5.py">files/actions_template_qt5.py</file>
         <file alias="actions_template_scons.py">files/actions_template_scons.py</file>
     </qresource>
